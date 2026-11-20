@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script id="anim-head">if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js');if('CSSViewTransitionRule' in window)document.documentElement.classList.add('vt')}</script>
+<script id="vt-js">
+(function(){
+if(!('CSSViewTransitionRule' in window))return;
+var HERO='hero';
+function last(u){var p=new URL(u,location.href).pathname.split('/').pop();return p||'index.html';}
+function isHome(){return !!document.querySelector('.worklist');}
+function cardImgs(){return [].slice.call(document.querySelectorAll('.case a .pimg'));}
+function cardImg(page){var a=[].slice.call(document.querySelectorAll('.case a')).filter(function(a){return last(a.getAttribute('href'))===page;})[0];return a&&a.querySelector('.pimg');}
+function hero(){return document.querySelector('.hero-img > *');}
+function clear(){cardImgs().forEach(function(i){i.style.viewTransitionName='';});var h=hero();if(h)h.style.viewTransitionName='';}
+function name(el){if(el)el.style.viewTransitionName=HERO;}
+window.addEventListener('pageswap',function(e){
+ if(!e.viewTransition||!e.activation||!e.activation.entry)return;
+ var to=last(e.activation.entry.url);clear();
+ if(isHome())name(cardImg(to));else if(to==='index.html')name(hero());
+});
+window.addEventListener('pagereveal',function(e){
+ if(!e.viewTransition)return;
+ var f=window.navigation&&navigation.activation&&navigation.activation.from;var from=f?last(f.url):null;clear();
+ if(isHome()){if(from)name(cardImg(from));}else if(from==='index.html'){name(hero());}
+ var T=['index.html','about.html','side-quests.html'];if(from&&T.indexOf(from)>-1&&T.indexOf(last(location.href))>-1)document.documentElement.classList.add('vt-top');
+ document.documentElement.setAttribute('data-vt',from||'1');
+});
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Jenna Passmore</title>
+<meta name="description" content="Ask (almost) anything about Jenna Passmore’s work and how it all got started.">
+<link rel="canonical" href="https://jennapassmore.com/about.html">
+<meta name="theme-color" content="#f5f2ea">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jenna Passmore">
+<meta property="og:title" content="About — Jenna Passmore">
+<meta property="og:description" content="Ask (almost) anything about Jenna Passmore’s work and how it all got started.">
+<meta property="og:url" content="https://jennapassmore.com/about.html">
+<meta property="og:image" content="https://jennapassmore.com/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About — Jenna Passmore">
+<meta name="twitter:description" content="Ask (almost) anything about Jenna Passmore’s work and how it all got started.">
+<meta name="twitter:image" content="https://jennapassmore.com/images/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#240800;--orange:#ff6b3f;--pink:#ffa6d9;--cream:#f5f2ea;--gutter:clamp(20px,4.5vw,64px);--display:'Unbounded',Impact,sans-serif;--body:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}img{display:block;max-width:100%}
+.display{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;opacity:.8}
+.btn{display:inline-block;border:1px solid var(--ink);padding:14px 22px;text-decoration:none;text-transform:uppercase;font-size:13px;background:transparent;color:var(--ink);font-family:var(--body);cursor:pointer}
+.btn.solid{background:var(--ink);color:var(--cream)}
+.btn.light{border-color:var(--cream);color:var(--cream)}
+
+/* nav */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:28px var(--gutter);background:var(--orange)}
+.nav .logo{font-family:var(--display);font-weight:900;text-transform:uppercase;text-decoration:none;font-size:20px}
+.nav ul{display:flex;gap:28px;align-items:center;list-style:none;font-size:14px}
+.nav a.cur{text-decoration:underline;text-underline-offset:4px}
+
+/* placeholder */
+.ph{position:relative;display:flex;align-items:center;justify-content:center;width:100%;overflow:hidden;color:rgba(36,8,0,.55);font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-align:center;background:repeating-linear-gradient(135deg,rgba(36,8,0,.06) 0 14px,transparent 14px 28px),#d9d3c6}
+.ph span{padding:8px 14px;background:rgba(245,242,234,.85)}
+.ph.pink{background:repeating-linear-gradient(135deg,rgba(36,8,0,.07) 0 14px,transparent 14px 28px),var(--pink)}
+.ph.orange{background:repeating-linear-gradient(135deg,rgba(36,8,0,.08) 0 14px,transparent 14px 28px),var(--orange)}
+.ph.dark{background:repeating-linear-gradient(135deg,rgba(245,242,234,.05) 0 14px,transparent 14px 28px),#3a1408;color:rgba(255,166,217,.8)}
+.r16x9{aspect-ratio:16/9}.r4x3{aspect-ratio:4/3}.r4x5{aspect-ratio:4/5}.r1x1{aspect-ratio:1}.r3x2{aspect-ratio:3/2}
+
+/* hero */
+.hero{background:var(--cream);padding:clamp(40px,7vw,100px) var(--gutter) clamp(32px,5vw,64px)}
+.hero h1{font-size:clamp(40px,8.4vw,136px);max-width:14ch}
+.hero p{margin-top:clamp(20px,3vw,40px);max-width:36ch;font-size:clamp(15px,1.5vw,19px)}
+.hero p b{font-weight:600}
+.hero-img{background:var(--cream);padding:0 var(--gutter)}
+
+/* dark sections */
+.dark{background:var(--ink);color:var(--cream)}
+.wave{display:block;width:100%;height:clamp(40px,8vw,120px)}
+.wave.top{background:var(--ink)}
+.wave.top path{fill:var(--cream)}
+.wave.bottom{background:var(--cream)}
+.wave.bottom path{fill:var(--ink)}
+.exp{padding:clamp(48px,8vw,110px) var(--gutter) 0;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:start}
+.exp h2{font-size:clamp(28px,4.4vw,68px)}
+.exp p{max-width:44ch;opacity:.92;font-size:15px}
+.exp .eyebrow{display:block;margin-bottom:16px;color:var(--pink)}
+.pair{padding:clamp(32px,5vw,64px) var(--gutter);display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,1vw,16px)}
+.quote{padding:clamp(56px,9vw,130px) var(--gutter);text-align:center}
+.quote q{display:block;quotes:none;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(18px,2.6vw,36px);line-height:1.12;max-width:26ch;margin:0 auto 32px}
+.quote cite{font-style:normal;font-family:var(--display);font-weight:900;text-transform:uppercase;color:var(--orange);text-decoration:underline;text-underline-offset:5px;font-size:clamp(14px,1.8vw,22px)}
+.center-img{padding:0 var(--gutter) clamp(48px,8vw,120px);display:flex;justify-content:center}
+.center-img .ph{width:min(100%,900px)}
+
+/* selected work */
+.work-intro{padding:clamp(48px,8vw,120px) var(--gutter);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end;background:var(--cream)}
+.work-intro h2{font-size:clamp(28px,4.4vw,68px)}
+.work-intro p{max-width:40ch;margin-bottom:20px;font-size:15px}
+.projects{padding:0 var(--gutter) clamp(48px,8vw,120px);display:flex;flex-direction:column;gap:clamp(56px,9vw,140px)}
+.proj a{text-decoration:none;display:block}
+.proj .t{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:1;font-size:clamp(16px,1.7vw,24px)}
+.proj dt{font-weight:600;font-size:14px}
+.proj dd{font-size:14px;margin-bottom:14px}
+.proj.full .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:14px;align-items:start}
+.proj.full .row dl{margin:0}
+.proj.side{display:grid;grid-template-columns:62% 1fr;gap:clamp(24px,5vw,80px);align-items:start}
+.proj.side.flip{grid-template-columns:1fr 62%}
+.proj.side.flip .info{order:-1;text-align:left}
+.proj.side .info .t{margin-bottom:20px}
+.proj.small{width:62%}
+.proj .soon{font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.6}
+.proj a:hover .t{text-decoration:underline;text-underline-offset:5px}
+
+/* history */
+.history{background:var(--pink);padding:clamp(48px,8vw,110px) var(--gutter) clamp(32px,5vw,64px)}
+.history .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px)}
+.history .eyebrow{display:block;margin-bottom:16px}
+.history p{max-width:36ch;margin-bottom:24px;font-size:clamp(15px,1.4vw,18px)}
+.history .btns{display:flex;gap:12px;flex-wrap:wrap}
+.timeline{list-style:none}
+.timeline li{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--ink);padding:16px 0;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(18px,2.4vw,32px)}
+.timeline li span{font-family:var(--body);font-weight:500;font-size:13px;letter-spacing:.1em}
+.marquees{background:var(--pink);padding-bottom:clamp(32px,5vw,64px)}
+.mrow{overflow:hidden;border-top:1px solid var(--ink);padding:clamp(14px,2vw,28px) 0;white-space:nowrap}
+.mrow:last-child{border-bottom:1px solid var(--ink)}
+.mtrack{display:inline-flex;align-items:center;gap:clamp(24px,4vw,56px);animation:slide 40s linear infinite;padding-right:clamp(24px,4vw,56px)}
+.mrow.rev .mtrack{animation-direction:reverse}
+.mtrack span{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(36px,7vw,110px);line-height:1}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.mtrack{animation:none}}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr}
+.about .txt{background:var(--ink);color:var(--cream);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:clamp(40px,6vw,96px) var(--gutter)}
+.about h2{color:var(--pink);font-size:clamp(22px,2.8vw,40px);line-height:1.05;max-width:16ch}
+.about h2 u{text-underline-offset:5px}
+.about p{margin-top:clamp(24px,4vw,56px);color:var(--pink);font-size:14px;max-width:36ch}
+
+/* contact */
+.contact{background:var(--orange);padding:clamp(40px,6vw,80px) 0 28px;overflow:hidden}
+.contact .mrow{border:0;padding:0}
+.contact .mtrack{animation-duration:30s}
+form{max-width:640px;margin:clamp(40px,6vw,96px) auto 0;padding:0 var(--gutter)}
+form label{display:block;font-size:13px;text-transform:uppercase;margin:20px 0 6px}
+form label small{text-transform:none;opacity:.7;margin-left:4px}
+form input,form textarea{width:100%;padding:10px 12px;border:1px solid var(--ink);background:var(--cream);color:var(--ink);font:inherit}
+form textarea{min-height:130px}
+form .names{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+form .names label{margin-top:6px}
+form .btn{margin-top:24px}
+.foot{margin:clamp(56px,8vw,120px) var(--gutter) 0}
+.foot .soc{display:flex;justify-content:flex-end;gap:16px;font-size:12px;text-transform:uppercase;margin-bottom:14px}
+.foot .line{border-top:1px solid var(--ink);padding-top:16px;font-size:12px;text-transform:uppercase}
+
+/* side quests */
+.sq-hero{background:var(--orange);padding:0 var(--gutter) clamp(32px,5vw,64px)}
+.sq-hero h1{color:var(--pink);font-size:max(32px,min(calc((100vw - 2*var(--gutter)) / 7.3),176px));padding-top:clamp(24px,4vw,56px);letter-spacing:-.02em}
+.sq-hero p{margin-top:clamp(20px,3vw,40px);max-width:30ch;font-size:15px}
+.sq{padding:clamp(24px,4vw,56px) var(--gutter) clamp(80px,12vw,200px);display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(24px,5vw,80px);align-items:start}
+.sq .item h3{font-size:15px;margin-top:14px}
+.sq .item p{font-size:15px;margin-bottom:18px}
+.sq .left{align-self:end;padding-top:clamp(80px,14vw,240px)}
+.sq .btn.off{opacity:.8;cursor:default}
+
+@media (max-width:760px){
+ .exp,.pair,.work-intro,.history .grid,.about,.sq,.proj.side,.proj.side.flip,.proj.full .row{grid-template-columns:1fr}
+ .proj.side.flip .info{order:0}.proj.small{width:100%}
+ .nav ul li:not(:last-child){display:none}
+ .sq .left{padding-top:0}
+ form .names{grid-template-columns:1fr}
+}
+
+.pimg{display:block;width:100%;height:auto}
+.about .pimg{height:100%;object-fit:cover;min-height:420px}
+.mwrap{position:relative}.mwrap .mrow{border-top:1px solid var(--ink)}.mwrap:last-child .mrow{border-bottom:1px solid var(--ink)}.mlogo{position:absolute;top:50%;transform:translate(-50%,-50%);width:clamp(80px,14vw,220px);aspect-ratio:1;border-radius:50%;object-fit:cover;background:var(--ink);z-index:2;pointer-events:none}
+.ph.dark span{background:rgba(245,242,234,.9);color:var(--ink)}
+</style>
+<style>
+/* side quest cards (match case study cards) */
+.sq .item a{display:block;text-decoration:none}
+.sq .item .pimg{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.sq .item a:hover .pimg{transform:translateY(-6px)}
+.sq .item .t{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:1;font-size:clamp(16px,1.9vw,28px);margin-top:clamp(12px,2vw,24px);margin-bottom:14px}
+.sq .item a:hover .t{text-decoration:underline;text-underline-offset:5px}
+.sq .item p{font-size:14px;max-width:46ch;margin-bottom:18px}
+.sq .item .cta{display:inline-block;font-size:13px;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:2px;transition:padding .25s ease}
+.sq .item a:hover .cta{padding-right:12px}
+.sq .item .soon{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55}
+</style>
+<style>
+.sq .feature{grid-column:1/-1}
+</style>
+<style>
+/* hover: orange title + link, no underline */
+.sq .item .t{transition:color .25s ease}
+.sq .item .cta{transition:padding .25s ease,color .25s ease}
+.sq .item a:hover .t{color:var(--orange);text-decoration:none}
+.sq .item a:hover .cta{color:var(--orange)}
+</style>
+<style>/* eyebrows caps */.sec-head .n,.eyebrow,.meta dt{text-transform:uppercase}</style>
+<style>
+/* about / ask */
+.ask{background:var(--cream);padding:calc(clamp(40px,7vw,100px) + 90px) var(--gutter) clamp(48px,7vw,96px);min-height:100vh}
+.ask-in{max-width:none;margin:0;display:flex;flex-direction:column}
+.ask .eyebrow{display:block;margin-bottom:16px;text-transform:uppercase;font-size:11px;letter-spacing:.14em;opacity:.7}
+.ask h1{font-size:max(24px,min(calc((100vw - 2*var(--gutter)) / 14.6),84px));max-width:none}
+.ask .lede{margin-top:clamp(14px,2vw,24px);font-size:clamp(15px,1.5vw,19px);opacity:.75}
+.log{display:flex;flex-direction:column;gap:clamp(20px,3vw,32px);margin-top:clamp(28px,4vw,48px)}
+.log:empty{display:none}
+.msg.q{align-self:flex-end;max-width:80%;background:var(--ink);color:var(--cream);padding:12px 18px;border-radius:22px 22px 4px 22px;font-size:15px}
+.msg.a{max-width:68ch;font-size:16px;line-height:1.55}
+.msg.a{position:relative;padding-left:calc(var(--av) + 14px)}
+.msg.a::before,.msg.q::after{content:"";position:absolute;top:0;width:var(--av);height:var(--av);border-radius:50%;background-size:cover;background-position:center}
+.msg.a::before{left:0;background-image:url(images/avatar-jenna.jpg)}
+.msg.q{position:relative;margin-right:calc(var(--av) + 14px)}
+.msg.q::after{left:calc(100% + 14px);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23240800'/%3E%3Ccircle cx='20' cy='15' r='7' fill='%23f5f2ea'/%3E%3Cpath d='M6 40c0-8.5 6.3-14 14-14s14 5.5 14 14z' fill='%23f5f2ea'/%3E%3C/svg%3E")}
+.ask{--av:38px}
+@media (max-width:600px){.ask{--av:30px}}
+.msg.a p{margin-bottom:12px}
+.msg.a a{text-decoration:underline;text-underline-offset:3px}
+.msg.a a:hover{color:var(--orange)}
+.msg.a ul{list-style:none;margin:0 0 12px}
+.msg.a li{padding:6px 0;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:16px}
+.msg.a li span{opacity:.7;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(28px,4vw,44px)}
+.chips.drift{flex-direction:column;flex-wrap:nowrap;gap:0;margin-left:calc(var(--gutter) * -1);margin-right:calc(var(--gutter) * -1);-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.drow{overflow:hidden;padding:6px 0}
+.dtrack{display:flex;width:max-content;will-change:transform;animation:chipdrift var(--dur,60s) linear var(--dl,0s) infinite}
+.drow.rev .dtrack{animation-direction:reverse}
+.drow:hover .dtrack,.drow:focus-within .dtrack{animation-play-state:paused}
+.dset{display:flex;gap:10px;padding-right:10px;flex:none}
+.dtrack .chip{white-space:nowrap;flex:none}
+@keyframes chipdrift{to{transform:translateX(-50%)}}
+.chip{font:inherit;font-size:14px;color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:99px;padding:10px 18px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip:hover,.chip:focus-visible{background:var(--orange);border-color:var(--orange)}
+.composer{position:sticky;bottom:16px;margin:clamp(20px,3vw,32px) 0 0;padding:0;max-width:none;display:flex;align-items:center;gap:8px;background:var(--cream);border:1px solid var(--ink);border-radius:99px;padding:6px 6px 6px 22px}
+.composer input{flex:1;width:auto;border:0;background:transparent;padding:10px 0;font:inherit;font-size:15px;color:var(--ink);outline:none}
+.composer button{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--ink);color:var(--cream);font-size:18px;cursor:pointer;transition:background .2s,color .2s}
+.composer button:hover,.composer button:focus-visible{background:var(--orange);color:var(--ink)}
+.ask .note{margin-top:14px;font-size:12px;opacity:.65}
+.ask .note a{text-decoration:underline;text-underline-offset:3px}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;background:transparent}
+.ask{position:relative;overflow:clip;isolation:isolate}
+.ask-in{position:relative}
+.glow{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.glow span{position:absolute;width:min(60vw,640px);aspect-ratio:1;transition:transform 2.4s cubic-bezier(.3,.7,.3,1);transform:translate(var(--x,0),var(--y,0)) scale(var(--s,1))}
+.glow i{display:block;width:100%;height:100%;border-radius:50%;filter:blur(70px);animation:drift 26s ease-in-out infinite alternate}
+.g1{top:-12%;right:-10%}.g1 i{background:var(--orange);opacity:.2}
+.g2{bottom:-8%;left:-12%}.g2 i{background:var(--pink);opacity:.3;animation-duration:34s;animation-direction:alternate-reverse}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(6%,-8%) scale(1.12)}}
+.msg.q.pop{animation:popin .4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes popin{from{opacity:0;transform:translateY(10px) scale(.96)}}
+.dots{display:inline-flex;gap:5px;align-items:center;height:1.5em;animation:dotsin .3s ease .35s both}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--ink);opacity:.55;animation:bounce 1s ease-in-out infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px);opacity:1}}
+@keyframes dotsin{from{opacity:0}}
+.fly{position:fixed;z-index:60;display:flex;align-items:center;box-sizing:border-box;padding:0 18px;white-space:nowrap;overflow:hidden;border:1px solid var(--ink);pointer-events:none;margin:0}
+@media (prefers-reduced-motion:reduce){.glow i{animation:none}.glow span{transition:none}.dots i{animation:none}}
+.cursor::after{content:"";display:inline-block;width:.5em;height:1em;margin-left:2px;background:currentColor;vertical-align:-.12em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+</style>
+<style id="nav-unify">
+/* shared top-level page frame: transparent nav over each hero, same top spacing, same lede */
+:root{--nav-h:106px}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;background:transparent}
+.hero,.ask,.sq-hero{padding-top:calc(var(--nav-h) + clamp(40px,7vw,100px))}
+.sq-hero h1{padding-top:0}
+.sq-hero p{font-size:clamp(15px,1.5vw,19px)}
+@media (max-width:760px){.composer input{font-size:16px}}
+@media (prefers-reduced-motion:no-preference){
+.nav{view-transition-name:nav}
+html.vt-top::view-transition-old(root){animation:.28s ease both vt-fade-out}
+html.vt-top::view-transition-new(root){animation:.5s ease .05s both vt-fade-in}
+@keyframes vt-fade-out{to{opacity:0}}
+@keyframes vt-fade-in{from{opacity:0}}
+}
+</style>
+<style id="anim">
+/* motion */
+.js body{animation:pagein .6s ease both}
+@keyframes pagein{from{opacity:0}to{opacity:1}}
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .8s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+.btn,.contact .btn{transition:background-color .25s ease,color .25s ease,border-color .25s ease}
+.btn:hover{background:var(--ink);color:var(--cream)}
+.btn.solid:hover{background:transparent;color:var(--ink)}
+.contact .btn:hover,.dark .btn:hover{background:transparent;color:var(--cream);border-color:var(--cream)}
+.nav ul a:not(.btn){background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s ease;text-decoration:none}
+.nav ul a:not(.btn):hover,.nav ul a.cur{background-size:100% 1px}
+.nav a.cur{text-decoration:none}
+.proj a .pimg,.proj a .ph,.card a .ph,.card a img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.proj a:hover .pimg,.proj a:hover .ph,.card a:hover .ph,.card a:hover img{transform:translateY(-6px)}
+.mrow:hover .mtrack{animation-play-state:paused}
+</style>
+<style id="vt-css">
+/* page transitions */
+@media (prefers-reduced-motion:no-preference){
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:.4s cubic-bezier(.4,0,.2,1) both vt-out}
+::view-transition-new(root){animation:.7s cubic-bezier(.2,.7,.2,1) both vt-in}
+::view-transition-group(hero){animation-duration:.7s;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+::view-transition-old(hero),::view-transition-new(hero){height:100%;width:100%;object-fit:cover}
+@keyframes vt-out{to{opacity:0;transform:translateY(-12px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(80px)}}
+}
+html.vt .hero-img.reveal{opacity:1!important;transform:none!important;transition:none!important}
+html.vt.js body{animation:none}
+</style>
+<style id="nav-burger">
+/* mobile hamburger menu */
+.nav-toggle{display:none}
+.nav{z-index:50}
+html.nav-open{overflow:hidden}
+@media (max-width:760px){
+:root{--nav-h:88px}
+.nav{padding-top:20px;padding-bottom:20px}
+.nav .logo{font-size:16px;white-space:nowrap;position:relative;z-index:3}
+.nav-toggle{display:flex;flex-direction:column;justify-content:center;gap:6px;width:44px;height:44px;margin-right:-10px;padding:0 10px;background:none;border:0;color:inherit;cursor:pointer;position:relative;z-index:3}
+.nav-toggle span{display:block;height:2px;background:currentColor;transition:transform .3s ease}
+.nav.open .nav-toggle span:nth-child(1){transform:translateY(4px) rotate(45deg)}
+.nav.open .nav-toggle span:nth-child(2){transform:translateY(-4px) rotate(-45deg)}
+.nav ul{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2;background:var(--ink);flex-direction:column;align-items:flex-start;justify-content:center;gap:clamp(18px,4vh,32px);padding:96px var(--gutter) var(--gutter);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s}
+.nav.open ul{opacity:1;visibility:visible;transition:opacity .25s ease}
+.nav ul li:not(:last-child){display:list-item}
+.nav ul li:last-child{margin-left:0}
+.nav ul a:not(.btn){color:var(--cream);font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(28px,9vw,44px);line-height:1.1;background:none;text-decoration:none}
+.nav ul a:not(.btn):hover,.nav ul a:not(.btn):focus-visible,.nav ul a.cur{color:var(--orange)}
+.nav ul .btn{margin-top:8px;padding:14px 22px;font-size:13px;color:var(--cream);border-color:var(--cream)}
+.nav ul .btn:hover,.nav ul .btn:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.nav.open .logo,.nav.open .nav-toggle{color:var(--cream)}
+}
+/* outlined buttons fill orange on hover, like the filled ones */
+.btn:not(.solid):hover,.btn:not(.solid):focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.nav ul,.nav-toggle span{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="index.html">Jenna Passmore</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span><span></span></button>
+  <ul id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="cur">About</a></li>
+    <li><a href="side-quests.html">Side Quests</a></li>
+    <li><a class="btn solid" href="mailto:jenna.passmore@gmail.com">Get in touch</a></li>
+  </ul>
+</header>
+
+<section class="ask" aria-labelledby="ask-h">
+  <div class="glow" aria-hidden="true"><span class="g1"><i></i></span><span class="g2"><i></i></span></div>
+  <div class="ask-in">
+    <h1 class="display" id="ask-h">Ask me (almost) anything</h1>
+    <p class="lede">Mostly about my work and how I got here. We’ll save the rest for IRL.</p>
+    <div class="log" id="log" aria-live="polite"></div>
+    <div class="chips" id="chips"></div>
+    <form class="composer" id="ask-form" autocomplete="off">
+      <input id="ask-input" type="text" placeholder="Ask about Jenna’s work or background" aria-label="Ask a question">
+      <button type="submit" aria-label="Send question">&#8593;</button>
+    </form>
+    <p class="note">Answers come from Jenna’s portfolio and a few things shared here. For anything else, <a href="mailto:jenna.passmore@gmail.com">email Jenna</a>.</p>
+  </div>
+</section>
+<script id="anim-js">
+(function(){
+var root=document.documentElement;if(!root.classList.contains('js'))return;
+var sel=['.hero > *','.hero-img','.meta > div','.contrib > div','.intro .left','.intro .right','.intro .role > *','.sec-head > div','.vis > *','.big p','.impact > *:not(.stats)','.stats > div','.card','.proj','.quote > *','.press > *','.exp > *','.pair > *','.center-img','.work-intro > *','.history .grid > *','.about > *','.coda > *','.next > h2','.contact h2','.contact .btn','.compare','.scale','.sq-hero > *','.sq .item','.contact form'].join(',');
+var els=[].slice.call(document.querySelectorAll(sel));
+var seen=new Set();els=els.filter(function(e){if(seen.has(e))return false;seen.add(e);return true;});
+function prep(el){var m=(el.textContent||'').trim().match(/^([^0-9]*)([0-9]+(?:\.[0-9]+)?)(.*)$/);if(!m||parseFloat(m[2])===0||el.children.length)return;
+ var d=(m[2].split('.')[1]||'').length;el.style.display='inline-block';el.style.minWidth=el.offsetWidth+'px';el._c={p:m[1],v:parseFloat(m[2]),d:d,s:m[3]};el.textContent=m[1]+(0).toFixed(d)+m[3];}
+function run(el){var c=el._c;if(!c)return;var t0=null;function f(t){if(t0===null)t0=t;var k=Math.min((t-t0)/1100,1),e=1-Math.pow(1-k,3);el.textContent=c.p+(c.v*e).toFixed(c.d)+c.s;if(k<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+var nums=[].slice.call(document.querySelectorAll('.impact .num,.stats .n,.scale .n'));nums.forEach(prep);
+els.forEach(function(e){e.classList.add('reveal');});
+var io=new IntersectionObserver(function(entries){var vis=entries.filter(function(x){return x.isIntersecting;});
+ vis.forEach(function(x,i){var e=x.target;e.style.setProperty('--d',Math.min(i,4)*0.08+'s');e.classList.add('in');io.unobserve(e);var nn=e._c?e:(e.querySelector&&e.querySelector('.n'));if(nn&&nn._c)setTimeout(function(){run(nn);},i*80+150);});
+},{threshold:0.12,rootMargin:'0px 0px -6% 0px'});
+els.forEach(function(e){io.observe(e);});
+nums.forEach(function(n){if(!n._c)return;});
+})();
+</script>
+<script>
+(function(){
+var EMAIL='jenna.passmore@gmail.com',MAIL='mailto:'+EMAIL;
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+/* Approved Q&A: served verbatim, first person */
+var STARTERS=[
+{q:'What happens when you join a project?',a:'<p>'+esc('I ask a lot of questions, draw a very ugly map, and eventually someone says, “Oh, I thought we were solving a different problem.” That’s usually when the meeting gets good.')+'</p>',
+ re:[/\b(join|joins|joining|joined|start|starts|starting|begin|begins|beginning|kick ?off|kicking off|onboard|onboarding)\b.*\b(project|projects|team|initiative|engagement)\b/,/\b(project|projects|team)\b.*\b(join|joins|joining|joined|kick ?off|onboard)/,/\b(approach|process|workflow)\b.*\b(project|projects)\b/,/\b(project|projects)\b.*\b(approach|process|workflow)\b/]},
+{q:'What would your dog say about you?',a:'<p>'+esc('“Smells great. Strong collaborator with fetch. Slow to act on requests for more walks.”')+'</p>',
+ re:[/\b(dog|kira|pup|puppy|pet)\b.*\b(say|says|said|think|thinks|describe|describes|review|opinion|call|calls)\b/,/\b(say|think|describe|review|opinion)\b.*\b(your|jennas|her)\s+(dog|pup|puppy|pet)\b/,/\bwhat (would|does|did) (kira|jennas dog|your dog)\b/]},
+{q:'How would you describe yourself in three words?',a:'<p>Curious. Warm. Overprepared.</p>',
+ re:[/\b(3|three)\b.*\bwords?\b/,/\bwords?\b.*\b(3|three)\b/,/\bdescribe (yourself|jenna|you)\b.*\bwords?\b/]}
+];
+var WW={q:'What’s it like working with you?',k:'working collaborate collaboration style teammate',a:'<p>'+esc('I’ll tell you what I think, ask what I’m missing, and happily change my mind. I’m also a big fan of giving you the afternoon back when we’ve already made the decision.')+'</p>',
+ re:[/\b(what|how)\b.*\b(like|is it)\b.*\bwork(ing)?\b.*\b(with|alongside)\b.*\b(you|jenna)\b/,/\bworking (with|alongside) (you|jenna)\b/,/\b(working|collaboration|communication) style\b/,/\bwhat are you like to (work|collaborate)/]};
+var FREE={q:'What do you do in your free time?',k:'free time hobbies outdoors backpacking skiing biking climbing fun',a:'<p>'+esc('I do all the outdoorsy things: backpacking, skiing, biking and climbing. What should I try next?')+'</p>',
+ re:[/\bfree time\b|\bspare time\b|\bhobb(y|ies)\b|\bfor fun\b/,/\b(outdoors?|outdoorsy|offline)\b/,/\b(backpacking|skiing|biking|climbing|hiking)\b/,/\bnot (designing|working)\b/,/\bwhat do you do (outside|besides|apart from|other than)\b/]};
+/* Portfolio answers: third person, public portfolio content only */
+var PROJ={
+ws:{gate:1,q:'What did you do on the Warning System?',re:/warning|account standing|appeals?|\bbans?\b/,
+ a:'<p>I was Lead Product Designer on Discord’s Warning System in 2023, designing the end-to-end Warning System, Account Standing, and Appeals experiences, including the content strategy.</p><p>The project reframed enforcement as education: instead of every violation being another step toward punishment, people could see what happened, why, and how to get back to good standing. It launched ahead of the EU deadline and contributed to a 9% decrease in bans (roughly 6,000 fewer a month) with no increase in appeal volume.</p><p><a href="warning-system.html">Read the case study →</a></p>',
+ ch:'How do we enforce the rules and still help people recover?'},
+ig:{gate:1,q:'What was your role on Ignore?',re:/\bignore\b/,
+ a:'<p>I was Design Lead on Ignore in 2025, defining the product strategy and interaction model and leading the project from concept through launch, working hands-on across product and content design.</p><p>Ignore is a discreet, reversible way to hide someone’s messages and notifications without alerting them, for when blocking feels like too much. After launch it drove a 14.5% increase in self-remediation and a 1.9% reduction in harassment reports.</p><p>The case study is coming soon.</p>',
+ ch:'How do we help people create distance without creating more conflict?'},
+fc:{gate:1,q:'Tell me about Family Center',re:/family center|parental|parent controls?/,
+ a:'<p>Family Center gives parents visibility without taking privacy from teens. I joined the original project two weeks after starting at Discord, with two sprints left before launch, and helped ship Discord’s first major family safety product globally.</p><p>Two years later, I returned as Lead Product Designer to design V2 from discovery through MVP, as new regulations required more parental visibility and control. Messages stay private, and teens can see exactly what their parents can see.</p><p>The case study is coming soon.</p>',
+ ch:'How do we give parents visibility without taking privacy from teens?'},
+dsa:{q:'What’s the DSA swag?',re:/\bdsa\b|swag|stickers?/,
+ a:'<p>A side quest from 2024. After Discord shipped a major safety-system overhaul to comply with the EU Digital Services Act, I concepted, illustrated, and designed a whole swag collection, from a sticker sheet to hats, shirts, and a postcard, all drawn by hand in Procreate and Adobe Illustrator.</p><p><a href="dsa-swag.html">See the swag →</a></p>',
+ ch:'Discord had just shipped a major safety-system overhaul to comply with the EU Digital Services Act, and serious work deserved a fun send-off.'}
+};
+var GENERAL=[
+{q:'Who are you?',k:'who jenna about introduce twitch design lead community',re:[/\bwho (are|is)\b/,/\b(introduce|about) (yourself|jenna|you)\b/,/\btell me about (yourself|jenna|you)\b/,/\bwhat do you do\b/],
+ a:'<p>I’m Jenna Passmore, a product design lead for community at <a href="https://twitch.tv" target="_blank" rel="noopener">Twitch</a>. I design experiences that enable communities to thrive.</p><p>Before Twitch, I worked on trust and safety experiences at Twitter and Discord, shaping how communities participate, self-regulate, and grow by reducing harm and creating space to belong. Now I’m at Twitch, where I’m exploring how creators and viewers build community live, one stream at a time.</p>'},
+{q:'Where have you worked?',k:'worked history background career resume companies agency linkedin',re:[/\b(where|what companies?|which companies)\b.*\b(work|worked|working)\b/,/\bwork history\b|\bcareer\b|\bbackground\b|\bresume\b|\bcv\b|\blinkedin\b/],
+ a:'<p>I have a blend of agency and in-house experience across a wide range of industries.</p><ul><li>Twitch <span>2026</span></li><li>Discord <span>2023</span></li><li>Twitter <span>2021</span></li><li>R/GA <span>2018</span></li><li>Canary <span>2016</span></li></ul><p><a href="images/2026-1107_PassmoreResume.pdf" target="_blank" rel="noopener">Download my resume</a> or find me on <a href="https://www.linkedin.com/in/jennapassmore" target="_blank" rel="noopener">LinkedIn</a>.</p>'},
+{q:'How can I work with you?',k:'hire contact reach email touch available connect freelance',re:[/\bwork with (you|jenna)\b/,/\b(hire|hiring|contact|reach|get in touch|email|freelance|available)\b/],
+ a:'<p>The easiest way is email: <a href="'+MAIL+'">'+EMAIL+'</a>. I respect NDAs, so get in touch for more case studies.</p><p>You can also find me on <a href="https://www.linkedin.com/in/jennapassmore" target="_blank" rel="noopener">LinkedIn</a>.</p>'}
+];
+var EMP={
+tw:{q:'What did you work on at Twitter?',k:'twitter trust safety reporting harmful content policy',re:/\btwitter\b/,a:'<p>'+esc('I designed Trust & Safety experiences that helped people report harmful content and make sense of what happened next. A lot of the work was about taking complicated policy and turning it into something a person could understand in the middle of a stressful moment.')+'</p>'},
+dc:{q:'What did you work on at Discord?',k:'discord communities mods moderators moderation reports safety tools',re:/\bdiscord\b/,a:'<p>'+esc('I designed tools that helped communities look out for each other. I worked on ways for members to flag things to their server mods, gave people more control over who they interact with, and redesigned the tools Discord\u2019s own safety team used to review reports. I got to see the same problem from three very different seats.')+'</p><p>Start with <a href="warning-system.html">the Warning System case study</a>. There’s also <a href="dsa-swag.html">swag</a>. Compliance work, but with stickers.</p>'},
+th:{q:'What are you working on at Twitch?',k:'twitch lurking streams stream creator creators community regular',re:/\btwitch\b/,a:'<p>'+esc('I\u2019m interested in what makes someone go from lurking in a stream to feeling like a regular. Twitch is a fun place to explore that because the creator and the community are shaping the experience together, in real time.')+'</p>'}
+};
+/* list of every askable item, starters first */
+var FIRST=[STARTERS[1],WW,EMP.tw,EMP.dc,EMP.th];
+var ITEMS=FIRST.concat([STARTERS[0],STARTERS[2],FREE,GENERAL[0],GENERAL[1],PROJ.ws,PROJ.ig,PROJ.fc,PROJ.dsa,GENERAL[2]]);
+function open_(e){if(FIRST.indexOf(e)>-1)return true;return FIRST.filter(function(f){return asked[f.q];}).length>=2;}
+var ASK_WHICH='<p>Which project are you curious about?</p>';
+var PERSONAL='<p>This chat covers Jenna’s work and a few things she’s shared here. What would you like to know about her projects?</p>';
+var EDGE='<p>I’ve reached the edge of my Jenna knowledge. You can email Jenna directly at <a href="'+MAIL+'">'+EMAIL+'</a> or try one of these questions.</p>';
+var ATTR_CH=/\b(hardest|toughest|biggest|challenge|challenges|challenging|difficult|struggle|obstacle)\b/;
+var ATTR_RES=/\b(result|results|outcome|outcomes|impact|metrics|success|numbers|stats|role|contribution|responsibilit\w*)\b|what did you do/;
+var ATTR_OTHER=/\b(learn|learned|lesson|lessons|proud|favorite|favourite|mistake|mistakes|surprising|surprised|regret|timeline|how long|tools?|team size)\b|the project\b|that project\b|this project\b|tell me more/;
+var PERSONAL_RE=[/\bhow old\b|\bage\b|\bbirthday\b|\bborn\b/,/\b(married|husband|wife|spouse|partner|boyfriend|girlfriend|single|dating|kids?|children|baby|siblings?|brother|sister|parents? (are|were)|mom|dad)\b/,/\bwhere (do|does) (you|jenna) live\b|\bhome ?town\b|\baddress\b|\bphone\b|\bsalary\b|\bhow much (do|does)\b.*\b(earn|make)\b/,/\b(hobby|hobbies|favorite|favourite|religion|politic\w*|pronouns?|weekend|free time|outside (of )?work|personal)\b/,/\b(dog|kira|pet|pets|puppy)\b/,/\b(afraid|fear|secret|crush|ex)\b/];
+var STOP=/^(what|this|that|have|your|about|with|does|jenna|would|could|tell|from|they|were|there|their|much|many|when|where|which|work|worked|working|project|projects)$/;
+var log=document.getElementById('log'),chips=document.getElementById('chips'),form=document.getElementById('ask-form'),input=document.getElementById('ask-input');
+var asked={},busy=false,ctx=null,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function norm(t){return ' '+t.toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9\s\/]/g,' ').replace(/\s+/g,' ').trim()+' ';}
+function any(res,t){return res.some(function(r){return r.test(t);});}
+function projKey(t){for(var k in PROJ){if(PROJ[k].re.test(t))return k;}return null;}
+function relevant(t){var w=t.split(' ').filter(function(x){return x.length>3&&!STOP.test(x);}),best=null,score=0;ITEMS.forEach(function(e){if(!open_(e))return;var kw=norm((e.k||'')+' '+e.q+' '+(e.ch||'')),s=0;w.forEach(function(x){if(kw.indexOf(' '+x)>-1)s++;});if(s>score){score=s;best=e;}});return best;}
+/* returns {html, chips:[items]|null (null = default list)} */
+function answer(raw,item){
+ if(item)return result(item);
+ var t=norm(raw),i;
+ var MATCH=STARTERS.concat([WW,FREE]);for(i=0;i<MATCH.length;i++){if(any(MATCH[i].re,t))return result(MATCH[i]);}
+ var pk=projKey(t);
+ if(!pk){for(var ek in EMP){if(EMP[ek].re.test(t)&&!ATTR_CH.test(t)&&!ATTR_RES.test(t)&&!ATTR_OTHER.test(t))return result(EMP[ek]);}}
+ var attr=ATTR_CH.test(t)?'ch':(ATTR_RES.test(t)?'res':(ATTR_OTHER.test(t)?'other':null));
+ if(pk&&!attr)return result(PROJ[pk]);
+ if(!pk&&!attr){for(i=0;i<GENERAL.length;i++){if(any(GENERAL[i].re,t))return result(GENERAL[i]);}}
+ if(pk&&attr||attr&&ctx){var k=pk||ctx;ctx=k;
+  if(attr==='ch')return {html:'<p>Here’s how I framed the challenge: “'+esc(PROJ[k].ch)+'”</p>',chips:null};
+  if(attr==='res')return {html:PROJ[k].a,chips:null};
+  return {html:EDGE,chips:suggest(t)};}
+ if(any(PERSONAL_RE,t))return {html:PERSONAL,chips:suggest(t)};
+ if(attr)return {html:ASK_WHICH,chips:asked[EMP.dc.q]?[PROJ.ws,PROJ.ig,PROJ.fc,PROJ.dsa]:[EMP.dc,PROJ.dsa]};
+ return {html:EDGE,chips:suggest(t)};
+}
+function suggest(t){var r=relevant(t);if(r)return [r];var l=FIRST.filter(function(f){return !asked[f.q];});return l.length?l:null;}
+function result(e){for(var k in PROJ){if(PROJ[k]===e)ctx=k;}return {html:e.a,chips:null,item:e};}
+var phases=[0,.33,.66],SPEEDS=[22,17,27],started=false;
+function mkChip(e,dup){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=e.q;if(dup){b.tabIndex=-1;b.setAttribute('aria-hidden','true');}b.onclick=function(){ask(e.q,e,b.getBoundingClientRect());};return b;}
+function drawChips(list){
+ [].forEach.call(chips.querySelectorAll('.dtrack'),function(t,i){var a=t.getAnimations&&t.getAnimations()[0];if(a&&a.effect){var d=a.effect.getTiming().duration;if(d)phases[i]=((a.currentTime||0)/d)%1;}});
+ chips.innerHTML='';chips.className='chips';
+ if(list){list.slice(0,5).forEach(function(e){chips.appendChild(mkChip(e));});return;}
+ var items=ITEMS.filter(function(e){return !asked[e.q]&&(!started||open_(e));});
+ if(reduce||started){items.slice(0,5).forEach(function(e){chips.appendChild(mkChip(e));});return;}
+ chips.className='chips drift';
+ var rows=[[],[],[]];items.slice(0,12).forEach(function(e,i){rows[i%3].push(e);});
+ var vw=chips.getBoundingClientRect().width||innerWidth;
+ rows.forEach(function(r,ri){
+  var row=document.createElement('div');row.className='drow'+(ri===1?' rev':'');
+  var track=document.createElement('div');track.className='dtrack';row.appendChild(track);chips.appendChild(row);
+  function mkSet(dup){var s=document.createElement('div');s.className='dset';r.forEach(function(e){s.appendChild(mkChip(e,dup));});return s;}
+  var first=mkSet(false);track.appendChild(first);
+  var w=first.getBoundingClientRect().width||1,k=Math.max(1,Math.ceil(vw/w));
+  for(var i=1;i<2*k;i++)track.appendChild(mkSet(true));
+  var dur=Math.max(20,Math.round(k*w/SPEEDS[ri]));
+  track.style.setProperty('--dur',dur+'s');track.style.setProperty('--dl',(-phases[ri]*dur)+'s');
+ });
+}
+function typeInto(el,html,done){
+ if(reduce){el.innerHTML=html;done();return;}
+ var tmp=document.createElement('div');tmp.innerHTML=html;var nodes=[].slice.call(tmp.childNodes);el.innerHTML='';
+ var i=0;(function next(){if(i>=nodes.length){done();return;}var n=nodes[i++].cloneNode(true);el.appendChild(n);if(n.style){n.style.opacity=0;n.style.transition='opacity .45s ease';requestAnimationFrame(function(){requestAnimationFrame(function(){n.style.opacity=1;});});}setTimeout(next,380);})();
+}
+var GL=[[0,0,1,0,0,1],[-8,6,1.18,6,-5,1.1],[5,-4,.92,-7,4,1.2],[-4,-7,1.12,9,3,.95]],glStep=0;
+function pulse(){glStep=(glStep+1)%GL.length;var g=GL[glStep],a=document.querySelector('.g1'),b=document.querySelector('.g2');if(!a||!b)return;a.style.setProperty('--x',g[0]+'vw');a.style.setProperty('--y',g[1]+'vh');a.style.setProperty('--s',g[2]);b.style.setProperty('--x',g[3]+'vw');b.style.setProperty('--y',g[4]+'vh');b.style.setProperty('--s',g[5]);}
+function fly(q,r){
+ q.style.visibility='hidden';var b=q.getBoundingClientRect(),cs=getComputedStyle(document.documentElement),ink=cs.getPropertyValue('--ink').trim(),cream=cs.getPropertyValue('--cream').trim();
+ var c=document.createElement('div');c.className='fly';c.textContent=q.textContent;document.body.appendChild(c);
+ var from={left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',backgroundColor:'rgba(0,0,0,0)',color:ink,borderRadius:'99px',fontSize:'14px'},
+     to={left:b.left+'px',top:b.top+'px',width:b.width+'px',height:b.height+'px',backgroundColor:ink,color:cream,borderRadius:'22px 22px 4px 22px',fontSize:'15px'};
+ var an=c.animate([from,to],{duration:560,easing:'cubic-bezier(.2,.7,.2,1)',fill:'forwards'});
+ an.onfinish=function(){q.style.visibility='';c.remove();};
+ an.oncancel=function(){q.style.visibility='';c.remove();};
+}
+function ask(text,item,rect){
+ if(busy||!text.trim())return;busy=true;started=true;
+ var q=document.createElement('div');q.className='msg q';q.textContent=text;log.appendChild(q);
+ var a=document.createElement('div');a.className='msg a';if(!reduce)a.innerHTML='<span class="dots" aria-label="Typing"><i></i><i></i><i></i></span>';log.appendChild(a);
+ chips.style.display='none';
+ var r=answer(text,item);if(r.item)asked[r.item.q]=1;
+ q.scrollIntoView({block:'nearest',behavior:'auto'});
+ if(!reduce){if(rect)fly(q,rect);else q.classList.add('pop');}
+ setTimeout(function(){
+  pulse();
+  typeInto(a,r.html,function(){chips.style.display='';drawChips(r.chips);busy=false;a.scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'});});
+ },reduce?0:1200);
+}
+form.addEventListener('submit',function(e){e.preventDefault();var t=input.value;input.value='';ask(t);});
+if(matchMedia('(max-width:600px)').matches)input.placeholder='Ask about Jenna’s work';
+drawChips();
+})();
+</script>
+<script id="nav-burger-js">
+(function(){var n=document.querySelector('.nav'),b=n&&n.querySelector('.nav-toggle');if(!b)return;
+function set(o){n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu');document.documentElement.classList.toggle('nav-open',o);}
+b.addEventListener('click',function(){set(!n.classList.contains('open'));});
+[].forEach.call(n.querySelectorAll('ul a'),function(a){a.addEventListener('click',function(){set(false);});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+matchMedia('(min-width:761px)').addEventListener('change',function(e){if(e.matches)set(false);});
+})();
+</script>
+</body>
+</html>

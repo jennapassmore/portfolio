@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jennapassmore.com/sitemap.xml

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Jenna Passmore</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f5f2ea">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#240800;--orange:#ff6b3f;--pink:#ffa6d9;--cream:#f5f2ea;--gutter:clamp(20px,4.5vw,64px);--display:'Unbounded',Impact,sans-serif;--body:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:28px var(--gutter)}
+.nav .logo{font-family:var(--display);font-weight:900;text-transform:uppercase;text-decoration:none;font-size:20px}
+.nav ul{display:flex;gap:28px;align-items:center;list-style:none;font-size:14px}
+.nav ul a:not(.btn){text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s ease}
+.nav ul a:not(.btn):hover{background-size:100% 1px}
+.btn{display:inline-block;border:1px solid var(--ink);padding:14px 22px;text-decoration:none;text-transform:uppercase;font-size:13px;background:transparent;color:var(--ink);font-family:var(--body);cursor:pointer;transition:background-color .25s ease,color .25s ease,border-color .25s ease}
+.btn:hover,.btn:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.btn.solid{background:var(--ink);color:var(--cream)}
+.btn.solid:hover,.btn.solid:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,6vw,80px) var(--gutter) clamp(56px,9vw,120px)}
+h1{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:1.02;font-size:max(32px,min(calc((100vw - 2*var(--gutter)) / 5.2),240px));color:var(--orange)}
+p{margin-top:clamp(20px,3vw,32px);max-width:36ch;font-size:clamp(15px,1.5vw,19px)}
+.btn{margin-top:clamp(24px,3vw,40px);align-self:flex-start}
+@media (max-width:760px){.nav ul li:not(:last-child){display:none}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="/">Jenna Passmore</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/side-quests.html">Side Quests</a></li>
+    <li><a class="btn solid" href="mailto:jenna.passmore@gmail.com">Get in touch</a></li>
+  </ul>
+</header>
+<main>
+  <h1>404</h1>
+  <p>That page doesn’t exist, or it moved. Let’s get you back to the good stuff.</p>
+  <a class="btn solid" href="/">Back to home</a>
+</main>
+</body>
+</html>
