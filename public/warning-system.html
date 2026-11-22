@@ -352,6 +352,61 @@ html.nav-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.nav ul,.nav-toggle span{transition:none!important}}
 .nav{position:relative}
 </style>
+<style id="nav-sticky-css">
+/* nav stays pinned to the top while you scroll */
+.nav{position:sticky;top:0;z-index:50;background:var(--cream);transition:padding .3s ease,box-shadow .3s ease}
+.nav.stuck{padding-top:14px;padding-bottom:14px;box-shadow:0 1px 0 rgba(36,8,0,.12)}
+@media (max-width:760px){.nav.stuck{padding-top:12px;padding-bottom:12px}}
+@media (prefers-reduced-motion:reduce){.nav{transition:none}}
+</style>
+<style id="cta-touch-css">
+/* "Get in touch": outlined everywhere, pink on hover */
+.btn.cta-touch{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+.btn.cta-touch:hover,.btn.cta-touch:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.contact .btn.cta-touch{background:transparent;border-color:var(--cream);color:var(--cream)}
+.contact .btn.cta-touch:hover,.contact .btn.cta-touch:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:760px){.nav ul .btn.cta-touch{background:transparent;border-color:var(--cream);color:var(--cream)}.nav ul .btn.cta-touch:hover,.nav ul .btn.cta-touch:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}}
+</style>
+<style id="contact-panel-css">
+/* get-in-touch panel: grows from the clicked button, then content staggers in */
+html.cp-open{overflow:hidden}
+.cp-scrim{position:fixed;inset:0;z-index:99;background:rgba(36,8,0,.45);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
+.cp{--ox:100%;--oy:0px;position:fixed;top:0;right:0;bottom:0;z-index:100;width:min(440px,100%);background:var(--orange);color:var(--ink);padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;overflow-y:auto;
+ clip-path:circle(0 at var(--ox) var(--oy));transform:translateX(36px);visibility:hidden;
+ transition:clip-path .6s cubic-bezier(.65,0,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),visibility 0s linear .6s}
+html.cp-open .cp-scrim{opacity:1;visibility:visible;transition:opacity .45s ease}
+html.cp-open .cp{clip-path:circle(200vmax at var(--ox) var(--oy));transform:none;visibility:visible;transition:clip-path .75s cubic-bezier(.65,0,.2,1),transform .75s cubic-bezier(.2,.7,.2,1)}
+.cp-close{align-self:flex-end;width:44px;height:44px;margin:-10px -10px 0 0;background:none;border:0;color:inherit;font-size:28px;line-height:1;cursor:pointer}
+.cp-close:hover,.cp-close:focus-visible{color:var(--cream)}
+.cp h2{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:1;letter-spacing:-.01em;font-size:clamp(26px,3.4vw,40px);margin:clamp(16px,4vh,40px) 0 12px;text-wrap:balance}
+.cp p{font-size:15px;max-width:32ch}
+.cp ul{list-style:none;margin-top:clamp(24px,5vh,48px);display:grid;gap:12px}
+.cp .btn{display:flex;justify-content:space-between;align-items:center;width:100%;padding:18px 22px}
+.cp .btn .lead{display:flex;align-items:center;gap:14px}
+.cp .btn .ic{flex:none;font-size:22px;line-height:1;display:inline-block;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.cp .btn:hover .ic,.cp .btn:focus-visible .ic{transform:rotate(-10deg) scale(1.15)}
+.cp .btn .arr{transition:transform .25s ease}
+.cp .btn:hover .arr,.cp .btn:focus-visible .arr{transform:translateX(4px)}
+.cp li:nth-child(3) .btn:hover .arr,.cp li:nth-child(3) .btn:focus-visible .arr{transform:translateY(3px)}
+.cp .btn{background:transparent;border-color:var(--ink);color:var(--ink)}
+.cp .btn:hover,.cp .btn:focus-visible{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+/* orange trigger buttons, pink accents in the panel */
+.cp-back{display:none}
+@media (max-width:760px){
+ .cp-x{display:none}
+ .cp-back{display:inline}
+ .cp-close{align-self:flex-start;margin:-10px 0 0 -10px;font-size:30px}
+}
+/* staggered content */
+.cp h2,.cp p,.cp li{opacity:0;transform:translateY(14px);transition:opacity .15s ease,transform .15s ease}
+html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:none;transition:opacity .55s ease calc(.3s + var(--i,0) * .07s),transform .6s cubic-bezier(.2,.7,.2,1) calc(.3s + var(--i,0) * .07s)}
+.cp p{--i:1}.cp li:nth-child(1){--i:2}.cp li:nth-child(2){--i:3}.cp li:nth-child(3){--i:4}
+@media (prefers-reduced-motion:reduce){
+ .cp,.cp-scrim,.cp h2,.cp p,.cp li,.cp .ic,.cp .arr{transition:none!important}
+ .cp{clip-path:none;transform:none}
+ .cp h2,.cp p,.cp li{opacity:1;transform:none}
+}
+</style>
 </head>
 <body>
 
@@ -362,7 +417,7 @@ html.nav-open{overflow:hidden}
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="side-quests.html">Side Quests</a></li>
-    <li><a class="btn solid" href="mailto:jenna.passmore@gmail.com">Get in touch</a></li>
+    <li><a class="btn cta-touch" href="mailto:jenna.passmore@gmail.com" data-contact-open aria-haspopup="dialog" aria-controls="contact-panel">Get in touch</a></li>
   </ul>
 </header>
 
@@ -464,7 +519,7 @@ html.nav-open{overflow:hidden}
 
 <section class="contact" id="contact">
   <h2 class="display">Let’s create<br>something great</h2>
-  <a class="btn" href="mailto:jenna.passmore@gmail.com">Get in touch</a>
+  <a class="btn cta-touch" href="mailto:jenna.passmore@gmail.com" data-contact-open aria-haspopup="dialog" aria-controls="contact-panel">Get in touch</a>
   <footer><span>© 2026 Jenna Passmore</span><span>Made with 💜 and Claude Code</span></footer>
 </section>
 
@@ -486,6 +541,11 @@ els.forEach(function(e){io.observe(e);});
 nums.forEach(function(n){if(!n._c)return;});
 })();
 </script>
+<script id="nav-sticky-js">
+(function(){var n=document.querySelector('.nav');if(!n)return;
+function f(){n.classList.toggle('stuck',window.scrollY>8);}
+window.addEventListener('scroll',f,{passive:true});f();})();
+</script>
 <script id="nav-burger-js">
 (function(){var n=document.querySelector('.nav'),b=n&&n.querySelector('.nav-toggle');if(!b)return;
 function set(o){n.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu');document.documentElement.classList.toggle('nav-open',o);}
@@ -493,6 +553,33 @@ b.addEventListener('click',function(){set(!n.classList.contains('open'));});
 [].forEach.call(n.querySelectorAll('ul a'),function(a){a.addEventListener('click',function(){set(false);});});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
 matchMedia('(min-width:761px)').addEventListener('change',function(e){if(e.matches)set(false);});
+})();
+</script>
+<div class="cp-scrim" data-contact-close></div>
+<aside class="cp" id="contact-panel" role="dialog" aria-modal="true" aria-labelledby="cp-title" aria-hidden="true">
+  <button class="cp-close" type="button" aria-label="Close" data-contact-close><span class="cp-x" aria-hidden="true">×</span><span class="cp-back" aria-hidden="true">←</span></button>
+  <h2 id="cp-title">Let’s talk</h2>
+  <p>Hiring or have a project in mind? Pick whichever way is easiest.</p>
+  <ul>
+    <li><a class="btn" href="mailto:jenna.passmore@gmail.com"><span class="lead"><span class="ic" aria-hidden="true">💌</span><span class="lbl">Email me</span></span><span class="arr" aria-hidden="true">→</span></a></li>
+    <li><a class="btn" href="https://www.linkedin.com/in/jennapassmore" target="_blank" rel="noopener"><span class="lead"><span class="ic" aria-hidden="true">💼</span><span class="lbl">Message me on LinkedIn</span></span><span class="arr" aria-hidden="true">→</span></a></li>
+    <li><a class="btn" href="images/2026-1107_PassmoreResume.pdf" target="_blank" rel="noopener"><span class="lead"><span class="ic" aria-hidden="true">📎</span><span class="lbl">Download my resume</span></span><span class="arr" aria-hidden="true">↓</span></a></li>
+  </ul>
+</aside>
+<script id="contact-panel-js">
+(function(){
+var root=document.documentElement,panel=document.getElementById('contact-panel');if(!panel)return;
+var last=null;
+function open(t){last=t||document.activeElement;var r=last.getBoundingClientRect(),w=panel.offsetWidth;panel.style.setProperty('--ox',(r.left+r.width/2-(window.innerWidth-w))+'px');panel.style.setProperty('--oy',(r.top+r.height/2)+'px');root.classList.add('cp-open');panel.setAttribute('aria-hidden','false');setTimeout(function(){var f=panel.querySelector('.btn');if(f)f.focus({preventScroll:true});},350);}
+function close(){if(!root.classList.contains('cp-open'))return;root.classList.remove('cp-open');panel.setAttribute('aria-hidden','true');if(last&&last.focus)last.focus();}
+[].forEach.call(document.querySelectorAll('[data-contact-open]'),function(a){a.addEventListener('click',function(e){e.preventDefault();open(a);});});
+[].forEach.call(document.querySelectorAll('[data-contact-close]'),function(b){b.addEventListener('click',close);});
+document.addEventListener('keydown',function(e){
+ if(!root.classList.contains('cp-open'))return;
+ if(e.key==='Escape'){close();return;}
+ if(e.key==='Tab'){var f=[].slice.call(panel.querySelectorAll('button,a[href]'));if(!f.length)return;var a=f[0],z=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
+});
 })();
 </script>
 </body>
