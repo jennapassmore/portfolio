@@ -495,7 +495,7 @@ th:{q:'What are you working on at Twitch?',k:'twitch lurking streams stream crea
 };
 /* list of every askable item, starters first */
 var FIRST=[STARTERS[1],WW,EMP.tw,EMP.dc,EMP.th];
-var ITEMS=FIRST.concat([STARTERS[0],STARTERS[2],FREE,GENERAL[0],GENERAL[1],PROJ.ws,PROJ.ig,PROJ.fc,PROJ.dsa,GENERAL[2]]);
+var ITEMS=FIRST.concat([STARTERS[0],STARTERS[2],FREE,GENERAL[0],GENERAL[1],PROJ.ws,PROJ.fc,PROJ.dsa,GENERAL[2]]);
 function open_(e){if(FIRST.indexOf(e)>-1)return true;return FIRST.filter(function(f){return asked[f.q];}).length>=2;}
 var ASK_WHICH='<p>Which project are you curious about?</p>';
 var PERSONAL='<p>This chat covers Jenna’s work and a few things she’s shared here. What would you like to know about her projects?</p>';
@@ -526,13 +526,14 @@ function answer(raw,item){
   if(attr==='res')return {html:PROJ[k].a,chips:null};
   return {html:EDGE,chips:suggest(t)};}
  if(any(PERSONAL_RE,t))return {html:PERSONAL,chips:suggest(t)};
- if(attr)return {html:ASK_WHICH,chips:asked[EMP.dc.q]?[PROJ.ws,PROJ.ig,PROJ.fc,PROJ.dsa]:[EMP.dc,PROJ.dsa]};
+ if(attr)return {html:ASK_WHICH,chips:asked[EMP.dc.q]?[PROJ.ws,PROJ.fc,PROJ.dsa]:[EMP.dc,PROJ.dsa]};
  return {html:EDGE,chips:suggest(t)};
 }
 function suggest(t){var r=relevant(t);if(r)return [r];var l=FIRST.filter(function(f){return !asked[f.q];});return l.length?l:null;}
 function result(e){for(var k in PROJ){if(PROJ[k]===e)ctx=k;}return {html:e.a,chips:null,item:e};}
 var phases=[0,.33,.66],SPEEDS=[22,17,27],started=false;
-function mkChip(e,dup){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=e.q;if(dup){b.tabIndex=-1;b.setAttribute('aria-hidden','true');}b.onclick=function(){ask(e.q,e,b.getBoundingClientRect());};return b;}
+var EMO={'What would your dog say about you?':'🐶','What’s it like working with you?':'🤝','What did you work on at Twitter?':'🐦','What are you working on at Twitch?':'💜','How would you describe yourself in three words?':'✍️','Who are you?':'🤔'};
+function mkChip(e,dup){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=e.q+(EMO[e.q]?' '+EMO[e.q]:'');if(dup){b.tabIndex=-1;b.setAttribute('aria-hidden','true');}b.onclick=function(){ask(e.q,e,b.getBoundingClientRect());};return b;}
 function drawChips(list){
  [].forEach.call(chips.querySelectorAll('.dtrack'),function(t,i){var a=t.getAnimations&&t.getAnimations()[0];if(a&&a.effect){var d=a.effect.getTiming().duration;if(d)phases[i]=((a.currentTime||0)/d)%1;}});
  chips.innerHTML='';chips.className='chips';
@@ -571,7 +572,7 @@ function fly(q,r){
 }
 function ask(text,item,rect){
  if(busy||!text.trim())return;busy=true;started=true;
- var q=document.createElement('div');q.className='msg q';q.textContent=text;log.appendChild(q);
+ var q=document.createElement('div');q.className='msg q';q.textContent=(item&&EMO[text])?text+' '+EMO[text]:text;log.appendChild(q);
  var a=document.createElement('div');a.className='msg a';if(!reduce)a.innerHTML='<span class="dots" aria-label="Typing"><i></i><i></i><i></i></span>';log.appendChild(a);
  chips.style.display='none';
  var r=answer(text,item);if(r.item)asked[r.item.q]=1;
