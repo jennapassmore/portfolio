@@ -49,7 +49,7 @@ window.addEventListener('pagereveal',function(e){
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#240800;--orange:#ff6b3f;--pink:#ffa6d9;--cream:#f5f2ea;--gutter:clamp(20px,4.5vw,64px);--display:'Unbounded',Impact,sans-serif;--body:'Inter',system-ui,sans-serif}
+:root{--ink:#240800;--orange:#ff6b3f;--pink:#ffa6d9;--cream:#f5f2ea;--gutter:max(clamp(20px,4.5vw,64px),calc((100vw - 1680px) / 2));--display:'Unbounded',Impact,sans-serif;--body:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -147,7 +147,7 @@ a{color:inherit}img{display:block;max-width:100%}
 .contact{background:var(--orange);padding:clamp(40px,6vw,80px) 0 28px;overflow:hidden}
 .contact .mrow{border:0;padding:0}
 .contact .mtrack{animation-duration:30s}
-form{max-width:640px;margin:clamp(40px,6vw,96px) auto 0;padding:0 var(--gutter)}
+form{max-width:640px;margin:clamp(40px,6vw,96px) auto 0;padding:0 clamp(20px,4.5vw,64px)}
 form label{display:block;font-size:13px;text-transform:uppercase;margin:20px 0 6px}
 form label small{text-transform:none;opacity:.7;margin-left:4px}
 form input,form textarea{width:100%;padding:10px 12px;border:1px solid var(--ink);background:var(--cream);color:var(--ink);font:inherit}
@@ -358,6 +358,9 @@ html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:n
  .cp{clip-path:none;transform:none}
  .cp h2,.cp p,.cp li{opacity:1;transform:none}
 }
+</style>
+<style id="mobile-h1">
+@media (max-width:600px){.sq-hero h1{font-size:clamp(44px,16vw,72px);line-height:1.02;white-space:normal}}
 </style>
 </head>
 <body>

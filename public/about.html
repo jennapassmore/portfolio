@@ -49,7 +49,7 @@ window.addEventListener('pagereveal',function(e){
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#240800;--orange:#ff6b3f;--pink:#ffa6d9;--cream:#f5f2ea;--gutter:clamp(20px,4.5vw,64px);--display:'Unbounded',Impact,sans-serif;--body:'Inter',system-ui,sans-serif}
+:root{--ink:#240800;--orange:#ff6b3f;--pink:#ffa6d9;--cream:#f5f2ea;--gutter:max(clamp(20px,4.5vw,64px),calc((100vw - 1680px) / 2));--display:'Unbounded',Impact,sans-serif;--body:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -147,7 +147,7 @@ a{color:inherit}img{display:block;max-width:100%}
 .contact{background:var(--orange);padding:clamp(40px,6vw,80px) 0 28px;overflow:hidden}
 .contact .mrow{border:0;padding:0}
 .contact .mtrack{animation-duration:30s}
-form{max-width:640px;margin:clamp(40px,6vw,96px) auto 0;padding:0 var(--gutter)}
+form{max-width:640px;margin:clamp(40px,6vw,96px) auto 0;padding:0 clamp(20px,4.5vw,64px)}
 form label{display:block;font-size:13px;text-transform:uppercase;margin:20px 0 6px}
 form label small{text-transform:none;opacity:.7;margin-left:4px}
 form input,form textarea{width:100%;padding:10px 12px;border:1px solid var(--ink);background:var(--cream);color:var(--ink);font:inherit}
@@ -403,6 +403,20 @@ html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:n
  .cp h2,.cp p,.cp li{opacity:1;transform:none}
 }
 </style>
+<style id="mobile-h1">
+@media (max-width:600px){.ask h1{font-size:clamp(34px,12.4vw,56px);line-height:1.04;white-space:normal}}
+</style>
+<style id="ask-anchor">
+.ask h1{text-wrap:balance}
+@media (min-width:601px){.ask h1 .nb{white-space:nowrap}}
+/* chat-style layout: heading on top, question chips + input anchored to the bottom of the screen */
+.ask{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding-bottom:clamp(16px,2.5vw,28px)}
+.ask-in{flex:1 1 auto}
+.ask .chips{margin-top:auto;padding-top:clamp(28px,4vw,44px)}
+.ask .composer{bottom:0;margin-top:clamp(14px,2vw,20px)}
+.ask .note{margin:clamp(14px,2vw,20px) 0 0}
+.ask .note+.composer{margin-top:10px}
+</style>
 </head>
 <body>
 <header class="nav">
@@ -419,15 +433,15 @@ html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:n
 <section class="ask" aria-labelledby="ask-h">
   <div class="glow" aria-hidden="true"><span class="g1"><i></i></span><span class="g2"><i></i></span></div>
   <div class="ask-in">
-    <h1 class="display" id="ask-h" aria-label="Ask me (almost) anything"><span class="wd" aria-hidden="true" style="--i:0">Ask</span> <span class="wd" aria-hidden="true" style="--i:1">me</span> <span class="wd" aria-hidden="true" style="--i:2">(almost)</span> <span class="wd" aria-hidden="true" style="--i:3">anything</span></h1>
-    <p class="lede">Mostly about my work and how I got here. We’ll save the rest for IRL.</p>
+    <h1 class="display" id="ask-h" aria-label="Ask me (almost) anything"><span class="wd" aria-hidden="true" style="--i:0">Ask</span> <span class="wd" aria-hidden="true" style="--i:1">me</span> <span class="nb"><span class="wd" aria-hidden="true" style="--i:2">(almost)</span> <span class="wd" aria-hidden="true" style="--i:3">anything</span></span></h1>
+    <p class="lede">Answers come from my portfolio, plus a few easter eggs.</p>
     <div class="log" id="log" aria-live="polite"></div>
     <div class="chips" id="chips"></div>
+    <p class="note">Not a replacement for a real chat, so <a href="mailto:jenna.passmore@gmail.com">email me</a> to set one up.</p>
     <form class="composer" id="ask-form" autocomplete="off">
       <input id="ask-input" type="text" placeholder="Ask about Jenna’s work or background" aria-label="Ask a question">
       <button type="submit" aria-label="Send question">&#8593;</button>
     </form>
-    <p class="note">Answers come from Jenna’s portfolio and a few things shared here. For anything else, <a href="mailto:jenna.passmore@gmail.com">email Jenna</a>.</p>
   </div>
 </section>
 <script id="anim-js">

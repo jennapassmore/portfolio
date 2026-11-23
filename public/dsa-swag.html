@@ -55,7 +55,7 @@ window.addEventListener('pagereveal',function(e){
   --pink:#ffa6d9;
   --cream:#f5f2ea;
   --accent:var(--ink); /* set per project to a brand color from the work */
-  --gutter:clamp(20px,4.5vw,64px);
+  --gutter:max(clamp(20px,4.5vw,64px),calc((100vw - 1680px) / 2));
   --display:'Unbounded',Impact,sans-serif;
   --body:'Inter',system-ui,sans-serif;
 }

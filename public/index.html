@@ -49,7 +49,7 @@ window.addEventListener('pagereveal',function(e){
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#240800;--orange:#ff6b3f;--pink:#ffa6d9;--cream:#f5f2ea;--gutter:clamp(20px,4.5vw,64px);--display:'Unbounded',Impact,sans-serif;--body:'Inter',system-ui,sans-serif}
+:root{--ink:#240800;--orange:#ff6b3f;--pink:#ffa6d9;--cream:#f5f2ea;--gutter:max(clamp(20px,4.5vw,64px),calc((100vw - 1680px) / 2));--display:'Unbounded',Impact,sans-serif;--body:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -148,7 +148,7 @@ a{color:inherit}img{display:block;max-width:100%}
 .contact{background:var(--orange);padding:clamp(40px,6vw,80px) 0 28px;overflow:hidden}
 .contact .mrow{border:0;padding:0}
 .contact .mtrack{animation-duration:30s}
-form{max-width:640px;margin:clamp(40px,6vw,96px) auto 0;padding:0 var(--gutter)}
+form{max-width:640px;margin:clamp(40px,6vw,96px) auto 0;padding:0 clamp(20px,4.5vw,64px)}
 form label{display:block;font-size:13px;text-transform:uppercase;margin:20px 0 6px}
 form label small{text-transform:none;opacity:.7;margin-left:4px}
 form input,form textarea{width:100%;padding:10px 12px;border:1px solid var(--ink);background:var(--cream);color:var(--ink);font:inherit}
@@ -563,6 +563,20 @@ html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:n
 .intro-seen .typing{display:none}
 .intro-seen .hero .hello p{animation:pfloat 6s ease-in-out infinite alternate!important}
 @media (prefers-reduced-motion:reduce){.typing{display:none!important}.hero .hello p{animation:none!important}}
+</style>
+<style id="hero-full">
+/* hero fills the first screen so "My experience" starts below the fold */
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-bottom:clamp(40px,6vw,96px)}
+.hero .hello{align-self:flex-start}
+</style>
+<style id="hero-mobile-h1">
+/* phones: bigger headline that wraps onto more lines so it fills the screen */
+@media (max-width:600px){
+.hero h1{font-size:clamp(38px,11.6vw,52px);line-height:1.04}
+.hero h1 .ln{white-space:normal}
+.hero h1 .ln>.t,.hero h1 .phr .t{white-space:normal}
+.hero h1 .phr{display:inline}
+}
 </style>
 <style id="cta-touch-css">
 /* "Get in touch": outlined everywhere, pink on hover */
