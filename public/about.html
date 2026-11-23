@@ -417,6 +417,14 @@ html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:n
 .ask .note{margin:clamp(14px,2vw,20px) 0 0}
 .ask .note+.composer{margin-top:10px}
 </style>
+<style id="ask-big">
+/* large screens: bigger two-line heading, nudged down so the middle doesn't feel empty */
+@media (min-width:1400px) and (min-height:700px){
+.ask{padding-top:calc(clamp(40px,7vw,100px) + 90px + max(0px,(100svh - 760px) * .3))}
+.ask h1{font-size:max(84px,min(calc((100vw - 2*var(--gutter)) / 14.4),19vh))}
+.ask .lede{font-size:clamp(17px,1.4vw,26px)}
+}
+</style>
 </head>
 <body>
 <header class="nav">
