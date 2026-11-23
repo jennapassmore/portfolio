@@ -425,6 +425,17 @@ html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:n
 .ask .lede{font-size:clamp(17px,1.4vw,26px)}
 }
 </style>
+<style id="ask-dock">
+/* chips, note and input live in one dock pinned to the bottom; answers always flow above it */
+.ask .dock{position:sticky;bottom:0;z-index:3;margin-top:auto;padding-bottom:clamp(2px,1vw,8px)}
+.ask .dock::before{content:"";position:absolute;z-index:-1;left:calc(var(--gutter) * -1);right:calc(var(--gutter) * -1);top:0;bottom:calc(clamp(16px,2.5vw,28px) * -1);background:rgba(245,242,234,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 26px);mask-image:linear-gradient(to bottom,transparent,#000 26px);pointer-events:none}
+.ask .chips{margin-top:0;padding-top:clamp(28px,4vw,44px)}
+.ask .composer{position:static;bottom:auto}
+.ask .log .msg{scroll-margin-bottom:var(--dock-h,220px)}
+.ask .log{padding-bottom:clamp(16px,2.5vw,28px)}
+.ask .dock .chips{padding-top:clamp(30px,4vw,44px)}
+@media (max-width:600px){.ask .chips:not(.drift){flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-top:20px}.ask .chips:not(.drift)::-webkit-scrollbar{display:none}.ask .chips:not(.drift) .chip{flex:none;white-space:nowrap}}
+</style>
 </head>
 <body>
 <header class="nav">
@@ -444,12 +455,14 @@ html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:n
     <h1 class="display" id="ask-h" aria-label="Ask me (almost) anything"><span class="wd" aria-hidden="true" style="--i:0">Ask</span> <span class="wd" aria-hidden="true" style="--i:1">me</span> <span class="nb"><span class="wd" aria-hidden="true" style="--i:2">(almost)</span> <span class="wd" aria-hidden="true" style="--i:3">anything</span></span></h1>
     <p class="lede">Answers come from my portfolio, plus a few easter eggs.</p>
     <div class="log" id="log" aria-live="polite"></div>
+    <div class="dock" id="dock">
     <div class="chips" id="chips"></div>
     <p class="note">Not a replacement for a real chat, so <a href="mailto:jenna.passmore@gmail.com">email me</a> to set one up.</p>
     <form class="composer" id="ask-form" autocomplete="off">
       <input id="ask-input" type="text" placeholder="Ask about Jenna’s work or background" aria-label="Ask a question">
       <button type="submit" aria-label="Send question">&#8593;</button>
     </form>
+    </div>
   </div>
 </section>
 <script id="anim-js">
@@ -651,5 +664,6 @@ document.addEventListener('keydown',function(e){
 });
 })();
 </script>
+<script id="dock-h">(function(){var d=document.getElementById('dock');if(!d)return;var last=0;function u(){var h=d.offsetHeight;document.documentElement.style.setProperty('--dock-h',(h+16)+'px');if(last&&h!==last){var a=document.querySelectorAll('.log .msg.a');if(a.length)a[a.length-1].scrollIntoView({block:'nearest',behavior:'auto'});}last=h;}u();if(window.ResizeObserver)new ResizeObserver(u).observe(d);addEventListener('resize',u);})();</script>
 </body>
 </html>
