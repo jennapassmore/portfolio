@@ -603,6 +603,24 @@ html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:n
 .contact .btn.cta-touch:hover,.contact .btn.cta-touch:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}
 @media (max-width:760px){.nav ul .btn.cta-touch{background:transparent;border-color:var(--cream);color:var(--cream)}.nav ul .btn.cta-touch:hover,.nav ul .btn.cta-touch:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}}
 </style>
+<style id="nav-glass">
+/* nav: full-width at top, morphs into a floating glass pill on scroll */
+header.nav{position:fixed;top:0;left:0;right:0;margin:0 auto;width:100%;padding:28px var(--gutter);border-radius:999px;background:transparent;box-shadow:none;z-index:50;transition:width .4s cubic-bezier(.2,.8,.2,1),top .4s cubic-bezier(.2,.8,.2,1),padding .4s cubic-bezier(.2,.8,.2,1)}
+header.nav.stuck{top:14px;width:min(1120px,calc(100% - 2*clamp(12px,3vw,32px)));padding:10px 12px 10px 28px;background:transparent;box-shadow:none}
+header.nav::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;opacity:0;background:radial-gradient(60% 140% at 8% 0%,rgba(255,166,217,.55),transparent 70%),radial-gradient(55% 150% at 95% 100%,rgba(255,107,63,.3),transparent 70%),linear-gradient(135deg,rgba(255,255,255,.8),rgba(245,242,234,.68));-webkit-backdrop-filter:blur(28px) saturate(1.8);backdrop-filter:blur(28px) saturate(1.8);border:1px solid rgba(255,255,255,.65);box-shadow:0 10px 36px rgba(36,8,0,.14),inset 0 1px 0 rgba(255,255,255,.8),inset 0 -1px 0 rgba(36,8,0,.04);transition:opacity .35s ease}
+header.nav.stuck::before{opacity:1}
+header.nav.open::before{opacity:0}
+header.nav ul .btn{border-radius:999px;padding:11px 20px;background:var(--ink);color:var(--cream);border-color:var(--ink)}
+header.nav ul .btn:hover,header.nav ul .btn:focus-visible{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+@media (max-width:760px){header.nav{padding:20px var(--gutter)}
+header.nav.stuck{top:10px;padding:6px 6px 6px 20px;width:calc(100% - 24px)}
+header.nav ul .btn,header.nav ul .btn.cta-touch{padding:14px 22px;background:transparent;color:var(--cream);border-color:var(--cream)}}
+@media (prefers-reduced-motion:reduce){header.nav,header.nav::before{transition:none}}
+/* rounded CTAs */
+.btn,.contact .btn,.cp .btn,form .btn,button.btn{border-radius:999px}
+header.nav{transition:width .4s cubic-bezier(.2,.8,.2,1),top .4s cubic-bezier(.2,.8,.2,1),padding .4s cubic-bezier(.2,.8,.2,1),translate .35s cubic-bezier(.2,.8,.2,1)}
+header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
+</style>
 </head>
 <body>
 <header class="nav">
@@ -821,13 +839,15 @@ function build(){
  var ph=document.querySelector('.hero h1 .phr');
  if(ph){var pr0=ph.getBoundingClientRect();if(pr0.width>0){FX=pr0.left+pr0.width/2-r.left;FY=pr0.top+pr0.height/2-r.top;}}
  dots.sort(function(m,q){return Math.hypot(m.hx-FX,m.hy-FY)-Math.hypot(q.hx-FX,q.hy-FY);});
- function lay(d,l){d.ti=st+l*lag+Math.random()*(seen?10:140);d.dur=DUR;}
- for(i=0;i<dots.length;i++)lay(dots[i],Math.min(2,Math.floor(i*3/dots.length)));
+ var SP=seen?450:1150,md=1;dots.forEach(function(d){md=Math.max(md,Math.hypot(d.hx-FX,d.hy-FY));});
+ function lay(d){var f=Math.min(1,Math.hypot(d.hx-FX,d.hy-FY)/(md*1.05));d.ti=st+Math.pow(f,.85)*SP+Math.random()*(seen?10:120);d.dur=DUR;}
+ for(i=0;i<dots.length;i++)lay(dots[i]);
  var hr=hello?hello.getBoundingClientRect():null,bx=0,by=0;
  if(hr&&bub){bx=hr.left-r.left+bub.offsetLeft+bub.offsetWidth;by=hr.top-r.top+hr.height/2;}
  var br=narrow?[[W*.9,by-40],[W*.84,by-190],[W*.92,by-340]]:[[bx+70,by-18],[bx+170,by-70],[bx+120,by+46],[bx+250,by-140]];
-  br.forEach(function(q,j){var d=mk(q[0],q[1],.5);lay(d,2);dots.push(d);});
- hs=mk(0,0,.5);hs.hs=true;hs.r=0;hs.g=1;hs.ti=st+2*lag+DUR+(seen?20:450);dots.push(hs);
+  br.forEach(function(q,j){var d=mk(q[0],q[1],.5);lay(d);dots.push(d);});
+ hs=mk(0,0,.5);hs.hs=true;hs.r=0;hs.g=1;hs.ti=st+SP*.8+(seen?100:350);
+ if(!seen){var ls=0;[].forEach.call(document.querySelectorAll('.hero h1 .t,.hero h1 .ch'),function(e){var v=parseFloat(e.style.getPropertyValue('--s'));if(v>ls)ls=v;});hs.ti=Math.max(hs.ti,ls*1000+340+500);}dots.push(hs);
  document.documentElement.style.setProperty('--hsd',(hs.ti/1000)+'s');
  var hw=document.querySelector('.hero-img');
  if(hr&&hw){var hx=hr.left-r.left+hw.offsetLeft+hw.offsetWidth/2,hy=hr.top-r.top+hr.height/2,nn=null,nd=1e9;
@@ -856,7 +876,7 @@ function frame(now){
  raf=0;if(!t0)t0=now;var t=now-t0;
  ctx.clearRect(0,0,W,H);
  var i,p,q,key,d,a,dx,dy;
- for(i=0;i<dots.length;i++){p=dots[i];if(p.hs||reduce){p.g=1;p.z=1;p.v=reduce?1:ease((t-p.ti)/420);}else{var gg=cl((t-p.ti)/p.dur);p.g=gg>=1?1:gg;p.z=zoom(gg);p.v=cl(gg*4);if(gg>=1)p.z=1;}}
+ for(i=0;i<dots.length;i++){p=dots[i];if(p.hs||reduce){p.g=1;p.z=1;p.v=reduce?1:ease((t-p.ti)/420);}else{var gg=cl((t-p.ti)/p.dur);p.g=gg>=1?1:gg;p.z=1;p.v=ease((t-p.ti)/(seen?200:550));}}
  place(reduce?0:t/1000);
  var cur=graph();
  for(key in cur){if(!edges[key]){var ia=Math.floor(key/1000),ib=key%1000;if(dots[ia].v>.5&&dots[ib].v>.5)edges[key]={b:now,o:0};}else if(edges[key].o){edges[key].o=0;}}
@@ -864,7 +884,7 @@ function frame(now){
  ctx.lineWidth=1;
  for(key in edges){var e=edges[key],ia2=Math.floor(key/1000),ib2=key%1000;p=dots[ia2];q=dots[ib2];
   dx=p.x-q.x;dy=p.y-q.y;d=Math.sqrt(dx*dx+dy*dy);
-  var pr=reduce?1:ease((now-e.b)/350),fo=e.o?Math.max(0,1-(now-e.o)/500):1;
+  var pr=reduce?1:ease((now-e.b)/(seen?175:400)),fo=e.o?Math.max(0,1-(now-e.o)/500):1;
   a=.4*(1-Math.min(d/(L*2.2),.72))*Math.min(p.v,q.v)*fo;
   ctx.strokeStyle='rgba('+INK+','+a+')';ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+(q.x-p.x)*pr,p.y+(q.y-p.y)*pr);ctx.stroke();}
  if(mx>-900){for(i=0;i<dots.length;i++){p=dots[i];if(p.hs)continue;dx=p.x-mx;dy=p.y-my;d=Math.sqrt(dx*dx+dy*dy);
@@ -883,6 +903,13 @@ hero.addEventListener('pointerleave',function(){mx=my=-999;});
 if('IntersectionObserver' in window)new IntersectionObserver(function(en){vis=en[0].isIntersecting;if(vis)start();else if(raf){cancelAnimationFrame(raf);raf=0;}}).observe(hero);
 document.addEventListener('visibilitychange',function(){if(document.hidden){vis=false;}else{vis=true;start();}});
 })();
+</script>
+<script id="nav-hide-js">
+(function(){var n=document.querySelector('.nav');if(!n)return;var last=window.scrollY,tk=false;
+function f(){var y=window.scrollY,d=y-last;
+if(y<80||d<-4)n.classList.remove('hide');else if(d>6&&y>160&&!n.classList.contains('open'))n.classList.add('hide');
+if(Math.abs(d)>4)last=y;tk=false;}
+window.addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(f);}},{passive:true});})();
 </script>
 </body>
 </html>
