@@ -448,6 +448,11 @@ header.nav ul .btn,header.nav ul .btn.cta-touch{padding:14px 22px;background:tra
 header.nav{transition:width .4s cubic-bezier(.2,.8,.2,1),top .4s cubic-bezier(.2,.8,.2,1),padding .4s cubic-bezier(.2,.8,.2,1),translate .35s cubic-bezier(.2,.8,.2,1)}
 header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
 </style>
+<style id="nav-clear">
+/* the nav is fixed now, so case-study heroes make room for it */
+.hero{padding-top:clamp(150px,13vw,220px)}
+@media (max-width:760px){.hero{padding-top:clamp(120px,30vw,150px)}}
+</style>
 </head>
 <body>
 

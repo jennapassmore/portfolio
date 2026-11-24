@@ -262,7 +262,7 @@ form .btn{margin-top:24px}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
 @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px);opacity:1}}
 @keyframes dotsin{from{opacity:0}}
-.fly{position:fixed;z-index:60;display:flex;align-items:center;box-sizing:border-box;padding:0 18px;white-space:nowrap;overflow:hidden;border:1px solid var(--ink);pointer-events:none;margin:0}
+.fly{position:fixed;z-index:60;display:flex;align-items:center;box-sizing:border-box;padding:0 18px;white-space:nowrap;overflow:hidden;border:1px solid rgba(255,255,255,.9);pointer-events:none;margin:0}
 @media (prefers-reduced-motion:reduce){.glow i{animation:none}.glow span{transition:none}.dots i{animation:none}}
 .cursor::after{content:"";display:inline-block;width:.5em;height:1em;margin-left:2px;background:currentColor;vertical-align:-.12em;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
@@ -428,7 +428,7 @@ html.cp-open .cp h2,html.cp-open .cp p,html.cp-open .cp li{opacity:1;transform:n
 <style id="ask-dock">
 /* chips, note and input live in one dock pinned to the bottom; answers always flow above it */
 .ask .dock{position:sticky;bottom:0;z-index:3;margin-top:auto;padding-bottom:clamp(2px,1vw,8px)}
-.ask .dock::before{content:"";position:absolute;z-index:-1;left:calc(var(--gutter) * -1);right:calc(var(--gutter) * -1);top:0;bottom:calc(clamp(16px,2.5vw,28px) * -1);background:rgba(245,242,234,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 90px);mask-image:linear-gradient(to bottom,transparent,#000 90px);pointer-events:none}
+.ask .dock::before{content:"";position:absolute;z-index:-1;left:calc(var(--gutter) * -1);right:calc(var(--gutter) * -1);top:0;bottom:calc(clamp(16px,2.5vw,28px) * -1);background:rgba(245,242,234,.96);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 64px);mask-image:linear-gradient(to bottom,transparent,#000 64px);pointer-events:none}
 .ask .chips{margin-top:0;padding-top:clamp(28px,4vw,44px)}
 .ask .composer{position:static;bottom:auto}
 .ask .log .msg{scroll-margin-bottom:var(--dock-h,220px)}
@@ -455,11 +455,18 @@ header.nav{transition:width .4s cubic-bezier(.2,.8,.2,1),top .4s cubic-bezier(.2
 header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
 </style>
 <style id="chip-glass">
-/* one shared gradient behind the chips; chips are clear frosted glass on top */
-.chips{position:relative;isolation:isolate}
-.chips::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 38%,#000 62%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 38%,#000 62%,transparent);background:radial-gradient(45% 120% at 12% 30%,rgba(255,166,217,.85),transparent 70%),radial-gradient(45% 120% at 50% 80%,rgba(255,196,150,.7),transparent 70%),radial-gradient(45% 120% at 88% 30%,rgba(255,107,63,.55),transparent 70%)}
+/* chips are clear frosted glass over the page background */
 .chip{color:var(--ink);background:rgba(255,255,255,.34);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);border:1px solid rgba(255,255,255,.7);box-shadow:0 4px 14px rgba(36,8,0,.07),inset 0 1px 0 rgba(255,255,255,.85);transition:background .2s,box-shadow .2s,border-color .2s}
 .chip:hover,.chip:focus-visible{background:rgba(255,255,255,.62);border-color:rgba(255,255,255,.95);box-shadow:0 8px 20px rgba(36,8,0,.12),inset 0 1px 0 rgba(255,255,255,.95)}
+</style>
+<style id="chat-bubbles">
+.msg.q{color:var(--ink);background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,255,255,.7));-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);border:1px solid rgba(255,255,255,.9);box-shadow:0 8px 24px rgba(36,8,0,.08),inset 0 1px 0 #fff}
+.msg.a{padding:14px 20px;margin-left:calc(var(--av) + 14px);background:var(--pink);color:var(--ink);border:1px solid var(--pink);border-radius:4px 22px 22px 22px;box-shadow:0 8px 24px rgba(36,8,0,.08)}
+.msg.a::before{left:calc((var(--av) + 14px) * -1)}
+.msg.a>:last-child{margin-bottom:0}
+.msg.a{transition:background-color .35s ease,border-color .35s ease,box-shadow .35s ease}
+.msg.a.wait{background:transparent;border-color:transparent;box-shadow:none}
+.msg.a li{border-top-color:rgba(36,8,0,.3)}
 </style>
 </head>
 <body>
@@ -624,8 +631,8 @@ function pulse(){glStep=(glStep+1)%GL.length;var g=GL[glStep],a=document.querySe
 function fly(q,r){
  q.style.visibility='hidden';var b=q.getBoundingClientRect(),cs=getComputedStyle(document.documentElement),ink=cs.getPropertyValue('--ink').trim(),cream=cs.getPropertyValue('--cream').trim();
  var c=document.createElement('div');c.className='fly';c.textContent=q.textContent;document.body.appendChild(c);
- var from={left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',backgroundColor:'rgba(0,0,0,0)',color:ink,borderRadius:'99px',fontSize:'14px'},
-     to={left:b.left+'px',top:b.top+'px',width:b.width+'px',height:b.height+'px',backgroundColor:ink,color:cream,borderRadius:'22px 22px 4px 22px',fontSize:'15px'};
+ var from={left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',backgroundColor:'rgba(255,255,255,.34)',color:ink,borderRadius:'99px',fontSize:'14px'},
+     to={left:b.left+'px',top:b.top+'px',width:b.width+'px',height:b.height+'px',backgroundColor:'rgba(255,255,255,.82)',color:ink,borderRadius:'22px 22px 4px 22px',fontSize:'15px'};
  var an=c.animate([from,to],{duration:560,easing:'cubic-bezier(.2,.7,.2,1)',fill:'forwards'});
  an.onfinish=function(){q.style.visibility='';c.remove();};
  an.oncancel=function(){q.style.visibility='';c.remove();};
@@ -633,13 +640,13 @@ function fly(q,r){
 function ask(text,item,rect){
  if(busy||!text.trim())return;busy=true;started=true;
  var q=document.createElement('div');q.className='msg q';q.textContent=(item&&EMO[text])?text+' '+EMO[text]:text;log.appendChild(q);
- var a=document.createElement('div');a.className='msg a';if(!reduce)a.innerHTML='<span class="dots" aria-label="Typing"><i></i><i></i><i></i></span>';log.appendChild(a);
+ var a=document.createElement('div');a.className='msg a'+(reduce?'':' wait');if(!reduce)a.innerHTML='<span class="dots" aria-label="Typing"><i></i><i></i><i></i></span>';log.appendChild(a);
  chips.style.display='none';
  var r=answer(text,item);if(r.item)asked[r.item.q]=1;
  q.scrollIntoView({block:'nearest',behavior:'auto'});
  if(!reduce){if(rect)fly(q,rect);else q.classList.add('pop');}
  setTimeout(function(){
-  pulse();
+  pulse();a.classList.remove('wait');
   typeInto(a,r.html,function(){chips.style.display='';drawChips(r.chips);busy=false;a.scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'});});
  },reduce?0:1200);
 }
