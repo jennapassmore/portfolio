@@ -1,6 +1,8 @@
 /* Smooth scrolling (Lenis) + per-section parallax. */
 (function () {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  /* phones and tablets keep plain native scrolling: no per-frame work */
+  if (matchMedia('(pointer:coarse)').matches) return;
 
   /* Seconds the page takes to catch up with the wheel. 1 is floaty, 0.6 is snappy. */
   var SMOOTH = 0.8;

@@ -380,6 +380,7 @@ header.nav ul .btn,header.nav ul .btn.cta-touch{padding:14px 22px;background:tra
 header.nav{transition:width .4s cubic-bezier(.2,.8,.2,1),top .4s cubic-bezier(.2,.8,.2,1),padding .4s cubic-bezier(.2,.8,.2,1),translate .35s cubic-bezier(.2,.8,.2,1)}
 header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
 </style>
+<link rel="stylesheet" href="lite.css">
 </head>
 <body>
 <header class="nav">
@@ -411,7 +412,7 @@ header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
   -->
   <article class="item feature">
     <a href="https://jennapassmore.github.io/safeguard-playground/">
-      <img class="pimg" src="images/sq-safeguard.webp" alt="AI safeguard prototype">
+      <img loading="lazy" decoding="async" class="pimg" src="images/r/sq-safeguard-1200.jpg" srcset="images/r/sq-safeguard-1200.jpg 1200w, images/sq-safeguard.webp 2500w" sizes="(max-width:760px) 80vw, 100vw" alt="AI safeguard prototype">
       <div class="t">AI safeguard prototype</div>
       <p>What should it feel like when an AI says no? Try a few boundaries and see how they land.</p>
       <span class="cta">Try it out →</span>
@@ -419,7 +420,7 @@ header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
   </article>
   <article class="item feature">
     <a href="dsa-swag.html">
-      <img class="pimg" src="images/ds-hero-2400.jpg" alt="Laptop covered in DSA stickers">
+      <img loading="lazy" decoding="async" class="pimg" src="images/r/ds-hero-2400-1200.jpg" srcset="images/r/ds-hero-2400-1200.jpg 1200w, images/ds-hero-2400.jpg 2400w" sizes="(max-width:760px) 80vw, 100vw" alt="Laptop covered in DSA stickers">
       <div class="t">Discord DSA Swag</div>
       <p>Commemorating a compliance milestone</p>
       <span class="cta">Read case study →</span>
@@ -514,5 +515,6 @@ window.addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFram
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.28/dist/lenis.min.js"></script>
 <script src="sq-comet.js"></script>
 <script src="scroll-fx.js"></script>
+<script src="lite.js"></script>
 </body>
 </html>

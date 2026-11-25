@@ -1,0 +1,19 @@
+/* Motion tuning. Loaded after each page's own styles. */
+
+/* every device: don't animate what is off screen (class set by lite.js) */
+.offscreen,.offscreen *,.offscreen *::before,.offscreen *::after{animation-play-state:paused!important}
+
+/* phones and tablets: swap GPU-heavy effects for still, cheap equivalents */
+@media (max-width:760px),(pointer:coarse){
+  /* background colour glows: a soft edge without a live blur */
+  .glow i,.hglow i{filter:none!important;animation:none!important;-webkit-mask-image:radial-gradient(closest-side,#000,transparent);mask-image:radial-gradient(closest-side,#000,transparent)}
+  .glow span{transition:none!important}
+  .hero .hglow,.sq-hero .hglow{-webkit-mask-image:none;mask-image:none}
+  /* frosted glass: slightly more solid, no backdrop blur */
+  header.nav::before{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:radial-gradient(60% 140% at 8% 0%,rgba(255,166,217,.4),transparent 70%),radial-gradient(55% 150% at 95% 100%,rgba(255,107,63,.22),transparent 70%),rgba(248,245,238,.96)!important}
+  .chip,.msg.q,.ask .dock::before{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .chip{background:rgba(255,255,255,.72)}
+  .msg.q{background:rgba(255,255,255,.95)}
+  .chips.drift{-webkit-mask-image:none!important;mask-image:none!important}
+  header.nav{transition:translate .3s ease!important}
+}

@@ -9,6 +9,8 @@
   cv.style.cssText = 'position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:4';
   document.body.appendChild(cv);
   var ctx = cv.getContext('2d'), reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  /* touch screens: smaller canvas, and nothing is redrawn while the page is still */
+  var touch = matchMedia('(pointer:coarse)').matches, drawn = '', bw = 0;
   var INK = '36,8,0', PINK = '255,166,217', ORG = '255,107,63';
   var W = 0, H = 0, pts = [], keys = [], len = 0, t0 = 0;
 
@@ -41,7 +43,7 @@
   }
   function build() {
     W = document.documentElement.clientWidth; H = innerHeight;
-    var dpr = Math.min(devicePixelRatio || 1, 2);
+    var dpr = Math.min(devicePixelRatio || 1, touch ? 1.5 : 2);
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     var gut = items[0].offsetLeft || 20, hh = hero.offsetHeight, narrow = W <= 760;
     len = 0; keys = [];
@@ -135,6 +137,12 @@
     if (!t0) t0 = now;
     var t = (now - t0) / 1000, sy = scrollY;
     var goal = reduce ? len : target(sy);
+    if (touch && t > 1.8) {
+      if (Math.abs(goal - cur) < .5) cur = goal;
+      var state = sy + ':' + cur + ':' + len;
+      if (state === drawn) { requestAnimationFrame(frame); return; }
+      drawn = state;
+    }
     if (t < 1.8 && !reduce && sy < 5) cur = keys[0].l * ease(t / 1.8);
     else cur += (goal - cur) * (reduce ? 1 : .09);
     ctx.clearRect(0, 0, W, H);
@@ -158,7 +166,7 @@
       ctx.beginPath(); ctx.arc(p.x, y, 1.3 + 1.4 * fresh, 0, 6.283); ctx.fill();
     }
     /* the comet: tapered tail, soft glow, bright head */
-    var head = chasing ? pos : at(cur), bob = reduce ? 0 : Math.sin(t * 1.6) * 3;
+    var head = chasing ? pos : at(cur), bob = reduce || touch ? 0 : Math.sin(t * 1.6) * 3;
     ctx.globalAlpha = 1;
     for (var i = 16; !chasing && i >= 1; i--) {
       var q = at(Math.max(0, cur - i * 4.5)), k = 1 - i / 17;
@@ -176,7 +184,10 @@
     ctx.fillStyle = 'rgba(' + ORG + ',' + fade + ')'; ctx.beginPath(); ctx.arc(head.x, head.y - sy + bob, 5.5, 0, 6.283); ctx.fill();
     requestAnimationFrame(frame);
   }
-  build(); requestAnimationFrame(frame);
-  addEventListener('resize', build); addEventListener('load', build);
-  if (window.ResizeObserver) new ResizeObserver(function () { build(); }).observe(document.body);
+  function rebuild() { build(); drawn = ''; bw = document.documentElement.clientWidth; }
+  rebuild(); requestAnimationFrame(frame);
+  /* mobile browser bars change the height while scrolling; only a new width needs a rebuild */
+  addEventListener('resize', function () { if (!touch || document.documentElement.clientWidth !== bw) rebuild(); });
+  addEventListener('load', rebuild);
+  if (window.ResizeObserver) new ResizeObserver(rebuild).observe(document.body);
 })();

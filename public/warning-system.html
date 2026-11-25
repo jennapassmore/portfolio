@@ -433,6 +433,7 @@ header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
 <style id="brand-sync">
 .hero-img+.meta{border-top:0}
 </style>
+<link rel="stylesheet" href="lite.css">
 </head>
 <body>
 
@@ -452,7 +453,7 @@ header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
   <h1 class="display">Warning System</h1>
   <p class="tag">Reframing enforcement as education.</p>
 </section>
-<div class="hero-img"><img id="vt-hero" class="shot" src="images/ws-hero.jpg" alt="Account Standing screen on a phone"></div>
+<div class="hero-img"><img id="vt-hero" class="shot" src="images/r/ws-hero-1200.jpg" srcset="images/r/ws-hero-1200.jpg 1200w, images/r/ws-hero-2880.jpg 2880w" sizes="(max-width:760px) 80vw, 100vw" alt="Account Standing screen on a phone"></div>
 
 <dl class="meta">
   <div><dt>Client</dt><dd>Discord</dd></div>
@@ -468,34 +469,34 @@ header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
 
 <section class="sec">
   <div class="sec-head"><div><span class="n">The challenge</span><h2 class="display">How do we enforce the rules and still help people recover?</h2></div><div class="body"><p>Discord’s old enforcement system was simple: break the rules enough times and eventually lose your account. But it gave people little understanding of what they’d done wrong, where their account stood, or how to avoid making the same mistake again.</p><p>New EU regulations required us to make enforcement more transparent. We used that mandate to rethink the experience entirely. Instead of treating every violation as another step toward punishment, we created a graduated Warning System that shows people what happened, explains the policy behind it, makes the consequences clear, and gives them a path back to good standing.</p><p>The system launched ahead of the EU deadline and contributed to a 9% decrease in bans, or roughly 6,000 fewer bans per month, with no increase in appeal volume. More than 75% of affected users viewed their violation details, suggesting that when people were given context, they actually wanted to understand it.</p></div></div>
-<div class="vis"><img class="shot" src="images/ws-challenge.jpg" alt="System DM, violation detail and Account Standing screens on mobile"></div>
+<div class="vis"><img loading="lazy" decoding="async" class="shot" src="images/r/ws-challenge-1200.jpg" srcset="images/r/ws-challenge-1200.jpg 1200w, images/r/ws-challenge-2880.jpg 2880w" sizes="(max-width:760px) 80vw, 100vw" alt="System DM, violation detail and Account Standing screens on mobile"></div>
 </section>
 
 <section class="sec dark">
   <div class="sec-head"><div><span class="n">The approach</span><h2 class="display">Make enforcement constructive, transparent, and fair.</h2></div><div class="body"><p>We needed a model that did more than keep score. Each violation became an opportunity to explain the boundary someone had crossed, what it meant for their account, and what they could do next.</p><p>Behind that experience were complex policy rules, account states, consequences, and appeals. Drawing on conversations with people who had violated Discord’s policies, we brought it all together into one clear path:</p><p><strong>What happened → Why it happened → What it means → What comes next</strong></p><p>The challenge was making that experience feel simple, even when the system behind it wasn’t. Three principles guided how we translated that complexity into the experiences people actually see and use.</p></div></div>
-<div class="vis"><img class="shot" src="images/ws-approach.jpg" alt="Violation detail modal on desktop"></div>
+<div class="vis"><img loading="lazy" decoding="async" class="shot" src="images/r/ws-approach-1200.jpg" srcset="images/r/ws-approach-1200.jpg 1200w, images/r/ws-approach-2880.jpg 2880w" sizes="(max-width:760px) 80vw, 100vw" alt="Violation detail modal on desktop"></div>
 </section>
 
 <section class="sec">
   <div class="sec-head"><div><span class="n">Design principle 1: Be constructive</span><h2 class="display">Leave room for people to get it right.</h2></div><div class="body"><p>Someone making a mistake shouldn’t be treated the same as someone repeatedly causing harm. We designed graduated consequences that could escalate with continued violations, while allowing people to recover. Account Standing made that path visible: where people stood, what their violations meant, and how they could work toward restoring their standing.</p></div></div>
-<div class="vis"><div class="stack"><img class="shot" src="images/ws-p1-states.jpg" alt="Account Standing states from all good to banned"><img class="shot" src="images/ws-phase1logic.png" alt="Account statuses in the wild, and the heat map we translated ladders and account state into"></div></div>
+<div class="vis"><div class="stack"><img loading="lazy" decoding="async" class="shot" src="images/r/ws-p1-states-1200.jpg" srcset="images/r/ws-p1-states-1200.jpg 1200w, images/r/ws-p1-states-2880.jpg 2880w" sizes="(max-width:760px) 80vw, 100vw" alt="Account Standing states from all good to banned"><img loading="lazy" decoding="async" class="shot" src="images/ws-phase1logic.png" alt="Account statuses in the wild, and the heat map we translated ladders and account state into"></div></div>
 </section>
 
 <section class="sec">
   <div class="sec-head"><div><span class="n">Design principle 2: Be transparent</span><h2 class="display">Show people exactly what crossed the line.</h2></div><div class="body"><p>A warning only helps if someone understands what triggered it. I defined how violation details brought together the relevant content, the policy it broke, and the consequences. That meant providing enough context to make the decision understandable while being thoughtful about how violating content was displayed.</p></div></div>
-<div class="vis"><img class="shot" src="images/ws-p2-laptop.jpg" alt="Account Standing page with active violations on desktop"><img class="shot" src="images/ws-p2-cards.jpg" alt="Violation content cards and evidence states"></div>
+<div class="vis"><img loading="lazy" decoding="async" class="shot" src="images/r/ws-p2-laptop-1200.jpg" srcset="images/r/ws-p2-laptop-1200.jpg 1200w, images/r/ws-p2-laptop-2880.jpg 2880w" sizes="(max-width:760px) 80vw, 100vw" alt="Account Standing page with active violations on desktop"><img loading="lazy" decoding="async" class="shot" src="images/r/ws-p2-cards-1200.jpg" srcset="images/r/ws-p2-cards-1200.jpg 1200w, images/r/ws-p2-cards-2880.jpg 2880w" sizes="(max-width:760px) 80vw, 100vw" alt="Violation content cards and evidence states"></div>
 </section>
 
 <section class="sec">
   <div class="sec-head"><div><span class="n">Design principle 3: Be fair</span><h2 class="display">Accountability goes both ways.</h2></div><div class="body"><p>Even Discord doesn’t always get it right. We redesigned appeals as part of the same system, connecting violation details to a straightforward way to challenge enforcement decisions and request a review.</p></div></div>
-<div class="vis"><img class="shot" src="images/ws-p3-appeals.jpg" alt="Request a review flow on mobile"></div>
+<div class="vis"><img loading="lazy" decoding="async" class="shot" src="images/ws-p3-appeals.jpg" alt="Request a review flow on mobile"></div>
 </section>
 
 
 <section class="sec dark noticed">
   <div class="sec-head"><div><h2 class="display">Our approach got noticed</h2></div></div>
   <a class="cta" href="https://www.platformer.news/inside-discords-reform-movement-for/">Read the story →</a>
-  <div class="vis"><a href="https://www.platformer.news/inside-discords-reform-movement-for/" aria-label="Platformer: Inside Discord’s reform movement for banned users"><img class="shot" src="images/ws-newtonarticle.png" alt="Platformer: Inside Discord’s reform movement for banned users, by Casey Newton"></a></div>
+  <div class="vis"><a href="https://www.platformer.news/inside-discords-reform-movement-for/" aria-label="Platformer: Inside Discord’s reform movement for banned users"><img loading="lazy" decoding="async" class="shot" src="images/ws-newtonarticle.png" alt="Platformer: Inside Discord’s reform movement for banned users, by Casey Newton"></a></div>
 </section>
 <section class="sec" style="padding-bottom:0">
   <div class="sec-head"><div><span class="n">The impact</span><h2 class="display">Fewer bans. More understanding.</h2></div><div class="body">
@@ -522,7 +523,7 @@ header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
   </div></div>
   <div class="vis">
     <div class="stack">
-      <img class="shot" src="images/ws-entrypointlogic.png" alt="Entry-point comparison scorecard: six options scored on usability, process transparency and engineering effort">
+      <img loading="lazy" decoding="async" class="shot" src="images/r/ws-entrypointlogic-1330.jpg" alt="Entry-point comparison scorecard: six options scored on usability, process transparency and engineering effort">
     </div>
   </div>
 </section>
@@ -531,19 +532,19 @@ header.nav.hide:not(.open):not(:focus-within){translate:0 -150%}
   <div class="sec-head"><div><span class="n">Next steps</span><h2 class="display">Building a future vision</h2></div><div class="body">
     <p>Launch was the first step, and we designed it as a foundation for broader account health. The future vision adds Reports and safety resources to give people a fuller picture of their account health.</p>
   </div></div>
-  <div class="vis"><img class="shot" src="images/ws-projectphases.png" alt="Safety at Discord: projects map showing where Safety Center phases 1 and 2 sit in the app"></div>
+  <div class="vis"><img loading="lazy" decoding="async" class="shot" src="images/ws-projectphases.png" alt="Safety at Discord: projects map showing where Safety Center phases 1 and 2 sit in the app"></div>
   <div class="vis"><div class="sec-head"><div class="body"><p>A side-tab entry point would make the experience more usable and transparent, but required a much larger engineering investment.</p></div></div></div>
-  <div class="vis"><img class="shot" src="images/ws-account-health.jpg" alt="Safety Center with account health, safety spotlight and account standing on desktop"></div>
+  <div class="vis"><img loading="lazy" decoding="async" class="shot" src="images/r/ws-account-health-1288.jpg" alt="Safety Center with account health, safety spotlight and account standing on desktop"></div>
   <div class="vis"><div class="sec-head"><div class="body"><p>Concept B keeps everything in one support inbox, with Updates and Account health as tabs. It adds a new entry point, but one that’s lighter to build than a side tab. The tradeoff is that account health is less prominent and has less room to grow.</p></div></div></div>
-  <div class="vis"><img class="shot" src="images/ws-account-health_conceptb.jpg" alt="Second concept for the Safety Center account health page on desktop"></div>
+  <div class="vis"><img loading="lazy" decoding="async" class="shot" src="images/r/ws-account-health_conceptb-1288.jpg" alt="Second concept for the Safety Center account health page on desktop"></div>
   <div class="vis"><div class="sec-head"><div class="body"><p>The next step is research. We need to understand how people think about account health on Discord: what it means to them, what they expect to see, and where they’d look for it. That will tell us whether account health earns its own home or belongs alongside updates, and whether the larger investment is justified.</p></div></div></div>
 </section>
 
 <section class="next">
   <h2 class="display">On to the next one</h2>
   <div class="two">
-    <div class="card"><img src="images/fc-hero.jpg" alt="Family Center" style="aspect-ratio:16/9;object-fit:cover;width:100%;display:block"><div class="crow2"><div><h3>Family Center</h3><p>Sparking conversation between parents &amp; teens</p></div><span class="soon" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55">Coming soon</span></div></div>
-    <div class="card"><img src="images/ignore-hero.jpg" alt="Ignore" style="aspect-ratio:16/9;object-fit:cover;width:100%;display:block"><div class="crow2"><div><h3>Ignore</h3><p>Offering a stealthy way to get space</p></div><span class="soon" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55">Coming soon</span></div></div>
+    <div class="card"><img loading="lazy" decoding="async" src="images/r/fc-hero-1200.jpg" srcset="images/r/fc-hero-1200.jpg 1200w, images/r/fc-hero-1920.jpg 1920w" sizes="(max-width:760px) 80vw, 100vw" alt="Family Center" style="aspect-ratio:16/9;object-fit:cover;width:100%;display:block"><div class="crow2"><div><h3>Family Center</h3><p>Sparking conversation between parents &amp; teens</p></div><span class="soon" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55">Coming soon</span></div></div>
+    <div class="card"><img loading="lazy" decoding="async" src="images/r/ignore-hero-1200.jpg" srcset="images/r/ignore-hero-1200.jpg 1200w, images/ignore-hero.jpg 2400w" sizes="(max-width:760px) 80vw, 100vw" alt="Ignore" style="aspect-ratio:16/9;object-fit:cover;width:100%;display:block"><div class="crow2"><div><h3>Ignore</h3><p>Offering a stealthy way to get space</p></div><span class="soon" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55">Coming soon</span></div></div>
   </div>
 </section>
 
@@ -621,5 +622,6 @@ window.addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFram
 </script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.28/dist/lenis.min.js"></script>
 <script src="scroll-fx.js"></script>
+<script src="lite.js"></script>
 </body>
 </html>
