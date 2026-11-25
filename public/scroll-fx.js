@@ -33,7 +33,7 @@
   var LAYERS = [
     /* home */
     ['.hero .hello', 26],
-    ['.exp > div:first-child .eyebrow', 18], ['.exp-copy', 48],
+    ['.exp > div:first-child', 18], ['.exp-copy', 48],
     ['.dark .quote', 36], ['.center-img', 54],
     ['.work-intro > div:first-child', 22], ['.work-intro > div:last-child', 52],
     /* image and caption move as one block, so text never rides over the picture */
